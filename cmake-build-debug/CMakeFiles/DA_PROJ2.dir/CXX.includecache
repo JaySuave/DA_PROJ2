@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/omelh/Desktop/DA_PROJ2/Graph.h
+iostream
+-
+vector
+-
+queue
+-
+limits
+-
+algorithm
+-
+
+C:/Users/omelh/Desktop/DA_PROJ2/main.cpp
+iostream
+-
+iomanip
+-
+vector
+-
+Graph.h
+C:/Users/omelh/Desktop/DA_PROJ2/Graph.h
+
