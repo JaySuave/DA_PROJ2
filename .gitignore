@@ -53,3 +53,7 @@ include/*
 lib/*
 bin/*
 test/test_runner
+
+Extra_Fully_Connected_Graphs/
+Real-world-Graphs/
+Toy-Graphs/
