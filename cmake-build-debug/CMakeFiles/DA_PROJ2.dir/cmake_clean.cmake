@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/DA_PROJ2.dir/Graph.cpp.obj"
+  "CMakeFiles/DA_PROJ2.dir/Handler.cpp.obj"
   "CMakeFiles/DA_PROJ2.dir/main.cpp.obj"
   "DA_PROJ2.exe"
   "DA_PROJ2.exe.manifest"

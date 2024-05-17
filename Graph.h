@@ -1,186 +1,98 @@
-#ifndef DA_GRAPH_H
-#define DA_GRAPH_H
+#ifndef GRAPH_H
+#define GRAPH_H
 
-#include <iostream>
+// C++ Libraries
 #include <vector>
-#include <queue>
-#include <limits>
-#include <algorithm>
+#include <string>
+#include <iostream>
+#include <stdio.h>
+#include <cmath>
+#include <unordered_set>
 
-#define INF std::numeric_limits<double>::max()
+// Header Files
 
-// Forward declaration of GraphEdge class
-class GraphEdge;
 
-class GraphNode {
+using namespace std;
+
+class Node;
+
+class Edge{
 public:
-    /**
-     * @brief Constructs a new GraphNode object.
-     * @param id The unique identifier of the graph node.
-     * @param code The code associated with the graph node.
-     * @param available Indicates whether the node is available.
-     */
-    GraphNode(int id, std::string code, bool available) : id_(id), code_(std::move(code)), available(available) {}
 
-    /**
-     * @brief Gets the ID of the graph node.
-     * @return The ID of the graph node.
-     */
-    const int& getID() const {
-        return id_;
-    }
+    Edge(Node *origin, Node *dest, double dist);
 
-    /**
-     * @brief Checks if the graph node has been visited during traversal.
-     * @return True if the node has been visited, false otherwise.
-     */
-    bool isVisited() const {
-        return visited;
-    }
+    Edge()=default;
 
-    /**
-     * @brief Sets the visit status of the graph node.
-     * @param status The visit status to be set.
-     */
-    void setVisited(bool status) {
-        visited = status;
-    }
+    Node* getEdgeOrigin() const;
 
-    /**
-     * @brief Checks if the graph node is available.
-     * @return True if the node is available, false otherwise.
-     */
-    virtual bool isAvailable() {
-        return available;
-    }
+    Node* getEdgeDest() const;
 
-    /**
-     * @brief Sets the availability status of the graph node.
-     * @param a The availability status to be set.
-     */
-    virtual void setAvailable(bool a) {
-        available = a;
-    }
-
-    /**
-     * @brief Adds an edge incident on the node.
-     * @param edge Pointer to the edge to be added.
-     */
-    void addEdge(GraphEdge* edge) {
-        edges.push_back(edge);
-    }
-
-    std::vector<GraphEdge*> getAllEdges(){
-        return edges;
-    }
+    double getEdgeWeight() const;
 
 private:
-    int id_; /**< The unique identifier of the graph node. */
-    std::string code_; /**< The code associated with the graph node. */
-    bool visited = false; /**< Indicates whether the node has been visited during traversal. */
-    bool available; /**< Indicates whether the node is available. */
-    std::vector<GraphEdge*> edges; /**< Vector of edges incident on the node. */
+    Node* edge_origin_;
+    Node* edge_dest_;
+    double edge_weight_;
 };
 
-class GraphEdge {
+class Node{
 public:
-    /**
-     * @brief Constructs a new GraphEdge object.
-     * @param source The source vertex of the edge.
-     * @param destination The destination vertex of the edge.
-     * @param weight The weight of the edge.
-     */
-    GraphEdge(GraphNode* source, GraphNode* destination, double weight) : source(source), destination(destination), weight(weight) {
-        source->addEdge(this);
-        destination->addEdge(this);
-    }
 
-    /**
-     * @brief Gets the source vertex of the edge.
-     * @return The source vertex of the edge.
-     */
-    GraphNode* getSource() const {
-        return source;
-    }
+    Node(int id, double node_longitude = 0, double node_latitude = 0);
 
-    /**
-     * @brief Gets the destination vertex of the edge.
-     * @return The destination vertex of the edge.
-     */
-    GraphNode* getDestination() const {
-        return destination;
-    }
+    Node() = default;
 
-    /**
-     * @brief Gets the weight of the edge.
-     * @return The weight of the edge.
-     */
-    double getWeight() const {
-        return weight;
-    }
+    int getNodeId() const;
+
+    double getNodeLongitude() const;
+
+    double getNodeLatitude() const;
+
+    Edge* add_edge_to_node(Edge * new_edge);
+
+    Edge* find_edge(const Node * node_destination);
+
+    vector<Edge *> get_adjacent_edges() const;
+
+    double haversine_formula(const Node* destination_node) const;
+
+    Edge* get_edge_to_node(Node* node_dest);
+
+    bool isVisited();
+
+    void setVisited(bool visited);
+
 
 private:
-    GraphNode* source; /**< The source vertex of the edge. */
-    GraphNode* destination; /**< The destination vertex of the edge. */
-    double weight; /**< The weight of the edge. */
+    int node_id_;
+    double node_dist_;
+    double node_longitude_;
+    double node_latitude_;
+    vector<Edge *> adjacent_edges_;
+    bool visited;
 };
 
-/**
- * @brief The Graph class represents a graph network.
- */
+
 class Graph {
 public:
-    /**
-     * @brief Constructs a new Graph object with a source and a destination.
-     */
-    explicit Graph() {
+    Graph()=default;
 
-    }
+    vector<Node *> get_nodes_vector();
 
-    /**
-     * @brief Destroys the Graph object and deallocates memory.
-     */
-    ~Graph() {
-        for (GraphNode* vertex : vertices){
-            for (GraphEdge* edge : vertex->getAllEdges()) {
-                delete edge;
-            }
-            delete vertex;
-        }
-    }
+    bool add_node(Node * new_node);
 
-    /**
-     * @brief Adds a vertex to the graph.
-     *
-     * @param data The vertex to add.
-     * @return The added vertex.
-     */
-    GraphNode * addVertex(GraphNode* data) {
-        vertices.push_back(data);
-        return data;
-    }
+    bool add_edge(Edge * new_edge);
 
-    /**
-     * @brief Gets all vertices in the graph.
-     *
-     * @return A vector containing all vertices.
-     */
-    std::vector<GraphNode *> getAllVertex() {
-        return vertices;
-    }
+    Node* find_node(unsigned int node_id);
 
-    /**
-     * @brief Restores the original availability settings of all vertices in the graph.
-     */
-    void restoreOriginalSettings(){
-        for(auto vertex : vertices){
-            vertex->setAvailable(true);
-        }
-    }
+    void backtracking(unsigned int n, unsigned int pos, unordered_set<int>& visited, double cost, double& minCost, vector<unsigned int>& curPath, vector<unsigned int>& bestPath);
 
+    double backtracking_caller(vector<unsigned int>& path);
 
+    void delete_graph();
 private:
-    std::vector<GraphNode*> vertices;
+    vector<Node *> nodes_vector_;
 };
 
-#endif //DA_GRAPH_H
+
+#endif //GRAPH_H

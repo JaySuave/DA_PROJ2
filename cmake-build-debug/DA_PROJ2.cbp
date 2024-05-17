@@ -80,7 +80,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/omelh/Desktop/DA_PROJ2/Graph.cpp">
+			<Option target="DA_PROJ2"/>
+		</Unit>
 		<Unit filename="C:/Users/omelh/Desktop/DA_PROJ2/Graph.h">
+			<Option target="DA_PROJ2"/>
+		</Unit>
+		<Unit filename="C:/Users/omelh/Desktop/DA_PROJ2/Handler.cpp">
+			<Option target="DA_PROJ2"/>
+		</Unit>
+		<Unit filename="C:/Users/omelh/Desktop/DA_PROJ2/Handler.h">
 			<Option target="DA_PROJ2"/>
 		</Unit>
 		<Unit filename="C:/Users/omelh/Desktop/DA_PROJ2/main.cpp">

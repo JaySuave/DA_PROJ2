@@ -128,6 +128,54 @@ DA_PROJ2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DA_PROJ2.dir\build.make CMakeFiles/DA_PROJ2.dir/build
 .PHONY : DA_PROJ2/fast
 
+Graph.obj: Graph.cpp.obj
+.PHONY : Graph.obj
+
+# target to build an object file
+Graph.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DA_PROJ2.dir\build.make CMakeFiles/DA_PROJ2.dir/Graph.cpp.obj
+.PHONY : Graph.cpp.obj
+
+Graph.i: Graph.cpp.i
+.PHONY : Graph.i
+
+# target to preprocess a source file
+Graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DA_PROJ2.dir\build.make CMakeFiles/DA_PROJ2.dir/Graph.cpp.i
+.PHONY : Graph.cpp.i
+
+Graph.s: Graph.cpp.s
+.PHONY : Graph.s
+
+# target to generate assembly for a file
+Graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DA_PROJ2.dir\build.make CMakeFiles/DA_PROJ2.dir/Graph.cpp.s
+.PHONY : Graph.cpp.s
+
+Handler.obj: Handler.cpp.obj
+.PHONY : Handler.obj
+
+# target to build an object file
+Handler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DA_PROJ2.dir\build.make CMakeFiles/DA_PROJ2.dir/Handler.cpp.obj
+.PHONY : Handler.cpp.obj
+
+Handler.i: Handler.cpp.i
+.PHONY : Handler.i
+
+# target to preprocess a source file
+Handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DA_PROJ2.dir\build.make CMakeFiles/DA_PROJ2.dir/Handler.cpp.i
+.PHONY : Handler.cpp.i
+
+Handler.s: Handler.cpp.s
+.PHONY : Handler.s
+
+# target to generate assembly for a file
+Handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DA_PROJ2.dir\build.make CMakeFiles/DA_PROJ2.dir/Handler.cpp.s
+.PHONY : Handler.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -161,6 +209,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DA_PROJ2
+	@echo ... Graph.obj
+	@echo ... Graph.i
+	@echo ... Graph.s
+	@echo ... Handler.obj
+	@echo ... Handler.i
+	@echo ... Handler.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
