@@ -112,6 +112,8 @@ Edge* Node::get_edge_to_node(Node* node_dest) {
 // ============ Functions ============== //
 
 void Graph::backtracking(unsigned int n, unsigned int pos, unordered_set<int>& visited, double cost, double& minCost, vector<unsigned int>& curPath, vector<unsigned int>& bestPath) {
+    cout << "Current Node: " << pos << endl;
+
     visited.insert(pos);
     curPath.push_back(pos);
 

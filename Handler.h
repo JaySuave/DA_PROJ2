@@ -14,7 +14,7 @@ public:
     void print_Graph();
     void print_RealWorld_Graph();
 
-    void load_toyGraph(string line);
+    void load_toy_efc_Graph(string line);
 
     Graph get_graph();
 
@@ -26,12 +26,15 @@ public:
 
     bool isToy();
     void setToy(bool toy);
+
+    bool isEFC();
+    void setEFC(bool efc);
 private:
     Graph graph_;
     Graph real_world_graph_;
     vector<Node> real_world_nodes_;
     bool isToy_;
-
+    bool isEFC_;
 };
 
 

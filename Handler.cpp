@@ -19,8 +19,16 @@ void Handler::setToy(bool toy) {
     this->isToy_ = toy;
 }
 
+bool Handler::isEFC(){
+    return this->isEFC_;
+}
+
+void Handler::setEFC(bool efc) {
+    this->isEFC_ = efc;
+}
+
 //TODO: add labels to origin and destination nodes
-void Handler::load_toyGraph(std::string filePath) {
+void Handler::load_toy_efc_Graph(std::string filePath) {
     std::fstream file;
     file.open(filePath);
 

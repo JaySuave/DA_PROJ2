@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/omelh/Desktop/DA_PROJ2/Graph.cpp
+Graph.h
+C:/Users/omelh/Desktop/DA_PROJ2/Graph.h
+algorithm
+-
+unordered_set
+-
+
 C:/Users/omelh/Desktop/DA_PROJ2/Graph.h
 vector
 -
@@ -18,23 +26,5 @@ stdio.h
 cmath
 -
 unordered_set
--
-
-C:/Users/omelh/Desktop/DA_PROJ2/Handler.h
-vector
--
-Graph.h
-C:/Users/omelh/Desktop/DA_PROJ2/Graph.h
-string
--
-filesystem
--
-
-C:/Users/omelh/Desktop/DA_PROJ2/main.cpp
-iostream
--
-Handler.h
-C:/Users/omelh/Desktop/DA_PROJ2/Handler.h
-unistd.h
 -
 

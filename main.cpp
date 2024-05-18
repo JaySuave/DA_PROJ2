@@ -8,10 +8,11 @@ void mainMenu(Handler handler)
 {
     char option;
     bool isToy = handler.isToy();
+    bool isEFC = handler.isEFC();
 
     cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
     cout << "Choose action:" << endl;
-    if(handler.isToy()) {
+    if(handler.isToy() || handler.isEFC()) {
         cout << "1 - Backtracking Algorithm." << endl;
         cout << "2 - Triangular Approximation Heuristic." << endl;
         cout << "3 - Show loaded Graph." << endl;
@@ -67,7 +68,7 @@ void mainMenu(Handler handler)
 
 void toygraphChoice(Handler handler)
 {
-    basic_string<char> filePath = "../Toy-Graphs/";
+    string filePath = "../Toy-Graphs/";
 
     char option;
     cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
@@ -83,17 +84,17 @@ void toygraphChoice(Handler handler)
     switch(option){
         case '1':
             filePath.append("shipping.csv");
-            handler.load_toyGraph(filePath);
+            handler.load_toy_efc_Graph(filePath);
             mainMenu(handler);
             break;
         case '2':
             filePath.append("stadiums.csv");
-            handler.load_toyGraph(filePath);
+            handler.load_toy_efc_Graph(filePath);
             mainMenu(handler);
             break;
         case '3':
             filePath.append("tourism.csv");
-            handler.load_toyGraph(filePath);
+            handler.load_toy_efc_Graph(filePath);
             mainMenu(handler);
             break;
         default:
@@ -105,8 +106,9 @@ void toygraphChoice(Handler handler)
 
 void fullyConnectedChoice(Handler handler)
 {
-
+    string filePath = "../Extra_Fully_Connected_Graphs/";
     string option;
+
     cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
     cout << "Choose Fully Connected Graph:" << endl;
     cout << "1 - 25." << endl;
@@ -126,24 +128,79 @@ void fullyConnectedChoice(Handler handler)
     cout << "Enter your choice: ";
     cin >> option;
 
-    if (option == "1") {
-        //handler.read_FullyConnectedGraph("edges_25.csv");
-        sleep(1);
-        mainMenu(handler);
-    } else if (option == "2") {
-        //handler.read_FullyConnectedGraph("edges_25.csv");
-        handler.print_Graph();
-        sleep(1);
-        mainMenu(handler);
-    }else if (option == "3"){
-
+    switch(stoi(option)){
+        case 1:
+            filePath.append("edges_25.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 2:
+            filePath.append("edges_50.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 3:
+            filePath.append("edges_75.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 4:
+            filePath.append("edges_100.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 5:
+            filePath.append("edges_200.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 6:
+            filePath.append("edges_300.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 7:
+            filePath.append("edges_400.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 8:
+            filePath.append("edges_500.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 9:
+            filePath.append("edges_600.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 10:
+            filePath.append("edges_700.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 11:
+            filePath.append("edges_800.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        case 12:
+            filePath.append("edges_900.csv");
+            handler.load_toy_efc_Graph(filePath);
+            mainMenu(handler);
+            break;
+        default:
+            std::cout << "Invalid option. Please try again." << std::endl;
+            break;
     }
 
 }
 
+
+
 void datasetChoice(Handler handler) {
 
-    string optionData;
+    char optionData;
     cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
     cout << "Choose DataSet:" << endl;
     cout << "1 - Toy Graphs." << endl;
@@ -154,16 +211,23 @@ void datasetChoice(Handler handler) {
     cout << "Enter your choice: ";
     cin >> optionData;
 
-    if (optionData == "1") {
-    handler.setToy(true);
-    toygraphChoice(handler);
-    } else if (optionData == "2") {
-        //para testar:
-    handler.read_RealWorld("../Real-world-Graphs/graph1/nodes.csv", "../Real-world-Graphs/graph1/edges.csv");
-        handler.print_RealWorld_Graph();
 
-    } else if (optionData == "3"){
-        fullyConnectedChoice(handler);
+    switch(optionData){
+        case '1':
+            handler.setToy(true);
+            toygraphChoice(handler);
+            break;
+        case '2':
+            handler.read_RealWorld("../Real-world-Graphs/graph1/nodes.csv", "../Real-world-Graphs/graph1/edges.csv");
+            handler.print_RealWorld_Graph();
+            break;
+        case '3':
+            handler.setEFC(true);
+            fullyConnectedChoice(handler);
+            break;
+        default:
+            cout << "Invalid Choice.";
+            break;
     }
 }
 
