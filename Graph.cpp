@@ -1,3 +1,13 @@
+/**
+* @file Graph.cpp
+ * @brief Implementation of the Edge, Node, and Graph classes and their associated functions.
+ *
+ * This file contains the implementation details for the Edge, Node, and Graph classes, including
+ * methods for graph construction, TSP algorithms, and utility functions.
+ */
+
+
+
 #include "Graph.h"
 
 #include <algorithm>

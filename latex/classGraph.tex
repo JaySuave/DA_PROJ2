@@ -1,0 +1,238 @@
+\hypertarget{classGraph}{}\doxysection{Graph Class Reference}
+\label{classGraph}\index{Graph@{Graph}}
+
+
+Represents a graph consisting of nodes and edges, with methods for TSP algorithms.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_a90961be426ad80001cbc103b6385df31}\label{classGraph_a90961be426ad80001cbc103b6385df31}} 
+\mbox{\hyperlink{classGraph_a90961be426ad80001cbc103b6385df31}{Graph}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classGraph}{Graph}}. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classNode}{Node}} $\ast$ $>$ \mbox{\hyperlink{classGraph_ae3cbee7704c561ba6cf4ed53ca277200}{get\+\_\+nodes\+\_\+vector}} ()
+\begin{DoxyCompactList}\small\item\em Gets the vector of nodes in the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_aade642b6d70c46702243ab8fe8b4b0d6}{add\+\_\+node}} (\mbox{\hyperlink{classNode}{Node}} $\ast$new\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Adds a node to the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_a68acd76ae90e33981440a1e5550e26ad}{add\+\_\+edge}} (\mbox{\hyperlink{classEdge}{Edge}} $\ast$new\+\_\+edge)
+\begin{DoxyCompactList}\small\item\em Adds an edge to the graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNode}{Node}} $\ast$ \mbox{\hyperlink{classGraph_adfd7b19011bcd20293ccdd28b6ce9e06}{find\+\_\+node}} (unsigned int node\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Finds a node in the graph by its ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{Edge}} $\ast$ \mbox{\hyperlink{classGraph_aa839c6ffc1380ba0b753a6acbe67fbbf}{find\+\_\+edge\+\_\+between}} (\mbox{\hyperlink{classNode}{Node}} $\ast$node1, \mbox{\hyperlink{classNode}{Node}} $\ast$node2)
+\begin{DoxyCompactList}\small\item\em Finds an edge between two specified nodes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_a026d7836526dab4f8c4380d95bdb3e5c}\label{classGraph_a026d7836526dab4f8c4380d95bdb3e5c}} 
+void \mbox{\hyperlink{classGraph_a026d7836526dab4f8c4380d95bdb3e5c}{delete\+\_\+graph}} ()
+\begin{DoxyCompactList}\small\item\em Deletes the entire graph, freeing all allocated memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_ac19899c54b7c3fda33850727b357ffd1}{backtracking}} (unsigned int n, unsigned int pos, unordered\+\_\+set$<$ int $>$ \&visited, double cost, double \&min\+Cost, vector$<$ unsigned int $>$ \&cur\+Path, vector$<$ unsigned int $>$ \&best\+Path)
+\begin{DoxyCompactList}\small\item\em Backtracking algorithm for TSP. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_ae1e411a046a23939c968024d6e31ed69}\label{classGraph_ae1e411a046a23939c968024d6e31ed69}} 
+void \mbox{\hyperlink{classGraph_ae1e411a046a23939c968024d6e31ed69}{backtracking\+\_\+caller}} ()
+\begin{DoxyCompactList}\small\item\em Caller for the backtracking algorithm, initializing necessary variables. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_ab79a5177b7752e3de1e501c654447dc9}\label{classGraph_ab79a5177b7752e3de1e501c654447dc9}} 
+void \mbox{\hyperlink{classGraph_ab79a5177b7752e3de1e501c654447dc9}{nearest\+\_\+neighbour}} ()
+\begin{DoxyCompactList}\small\item\em Nearest neighbour algorithm for TSP. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classGraph_a8b0db3dbf1368e972e7c551f6084db62}{haversine}} (double lat1, double lon1, double lat2, double lon2)
+\begin{DoxyCompactList}\small\item\em Computes the Haversine distance between two geographical points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_a2304fbf52c220514fed4f0b285b97498}\label{classGraph_a2304fbf52c220514fed4f0b285b97498}} 
+void \mbox{\hyperlink{classGraph_a2304fbf52c220514fed4f0b285b97498}{approximate\+TSP}} ()
+\begin{DoxyCompactList}\small\item\em Approximate TSP solution using triangular inequality. \end{DoxyCompactList}\item 
+std\+::vector$<$ unsigned int $>$ \mbox{\hyperlink{classGraph_ae7531ecc76524dcf9f6a9a1fe7ba475a}{preorder\+Traversal}} (\mbox{\hyperlink{classNode}{Node}} $\ast$node, unordered\+\_\+map$<$ int, bool $>$ \&visited)
+\begin{DoxyCompactList}\small\item\em Preorder traversal of the graph for MST-\/based TSP approximation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classGraph_ab4d448c95f048d54135639bbd70cc798}{calculate\+Tour\+Distance}} (const std\+::vector$<$ unsigned int $>$ \&tour)
+\begin{DoxyCompactList}\small\item\em Calculates the total distance of a given tour. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_a2bb32d6580a962ed737138c13a676718}\label{classGraph_a2bb32d6580a962ed737138c13a676718}} 
+void \mbox{\hyperlink{classGraph_a2bb32d6580a962ed737138c13a676718}{compute\+MST}} ()
+\begin{DoxyCompactList}\small\item\em Computes the Minimum Spanning Tree (MST) of the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a graph consisting of nodes and edges, with methods for TSP algorithms. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraph_a68acd76ae90e33981440a1e5550e26ad}\label{classGraph_a68acd76ae90e33981440a1e5550e26ad}} 
+\index{Graph@{Graph}!add\_edge@{add\_edge}}
+\index{add\_edge@{add\_edge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{add\_edge()}{add\_edge()}}
+{\footnotesize\ttfamily bool Graph\+::add\+\_\+edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}} $\ast$}]{new\+\_\+edge }\end{DoxyParamCaption})}
+
+
+
+Adds an edge to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+edge} & Pointer to the new edge to be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the edge was added successfully, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_aade642b6d70c46702243ab8fe8b4b0d6}\label{classGraph_aade642b6d70c46702243ab8fe8b4b0d6}} 
+\index{Graph@{Graph}!add\_node@{add\_node}}
+\index{add\_node@{add\_node}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{add\_node()}{add\_node()}}
+{\footnotesize\ttfamily bool Graph\+::add\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNode}{Node}} $\ast$}]{new\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Adds a node to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+node} & Pointer to the new node to be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the node was added successfully, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_ac19899c54b7c3fda33850727b357ffd1}\label{classGraph_ac19899c54b7c3fda33850727b357ffd1}} 
+\index{Graph@{Graph}!backtracking@{backtracking}}
+\index{backtracking@{backtracking}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{backtracking()}{backtracking()}}
+{\footnotesize\ttfamily void Graph\+::backtracking (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{unsigned int}]{pos,  }\item[{unordered\+\_\+set$<$ int $>$ \&}]{visited,  }\item[{double}]{cost,  }\item[{double \&}]{min\+Cost,  }\item[{vector$<$ unsigned int $>$ \&}]{cur\+Path,  }\item[{vector$<$ unsigned int $>$ \&}]{best\+Path }\end{DoxyParamCaption})}
+
+
+
+Backtracking algorithm for TSP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Number of nodes. \\
+\hline
+{\em pos} & Current position. \\
+\hline
+{\em visited} & Set of visited node IDs. \\
+\hline
+{\em cost} & Current cost of the path. \\
+\hline
+{\em min\+Cost} & Minimum cost found so far. \\
+\hline
+{\em cur\+Path} & Current path being explored. \\
+\hline
+{\em best\+Path} & Best path found so far. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_ab4d448c95f048d54135639bbd70cc798}\label{classGraph_ab4d448c95f048d54135639bbd70cc798}} 
+\index{Graph@{Graph}!calculateTourDistance@{calculateTourDistance}}
+\index{calculateTourDistance@{calculateTourDistance}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{calculateTourDistance()}{calculateTourDistance()}}
+{\footnotesize\ttfamily double Graph\+::calculate\+Tour\+Distance (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ unsigned int $>$ \&}]{tour }\end{DoxyParamCaption})}
+
+
+
+Calculates the total distance of a given tour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tour} & Vector of node IDs representing the tour. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total distance of the tour. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_aa839c6ffc1380ba0b753a6acbe67fbbf}\label{classGraph_aa839c6ffc1380ba0b753a6acbe67fbbf}} 
+\index{Graph@{Graph}!find\_edge\_between@{find\_edge\_between}}
+\index{find\_edge\_between@{find\_edge\_between}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{find\_edge\_between()}{find\_edge\_between()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{Edge}} $\ast$ Graph\+::find\+\_\+edge\+\_\+between (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNode}{Node}} $\ast$}]{node1,  }\item[{\mbox{\hyperlink{classNode}{Node}} $\ast$}]{node2 }\end{DoxyParamCaption})}
+
+
+
+Finds an edge between two specified nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node1} & Pointer to the first node. \\
+\hline
+{\em node2} & Pointer to the second node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the found edge, or nullptr if not found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_adfd7b19011bcd20293ccdd28b6ce9e06}\label{classGraph_adfd7b19011bcd20293ccdd28b6ce9e06}} 
+\index{Graph@{Graph}!find\_node@{find\_node}}
+\index{find\_node@{find\_node}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{find\_node()}{find\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classNode}{Node}} $\ast$ Graph\+::find\+\_\+node (\begin{DoxyParamCaption}\item[{unsigned int}]{node\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Finds a node in the graph by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+\_\+id} & ID of the node to be found. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the found node, or nullptr if not found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_ae3cbee7704c561ba6cf4ed53ca277200}\label{classGraph_ae3cbee7704c561ba6cf4ed53ca277200}} 
+\index{Graph@{Graph}!get\_nodes\_vector@{get\_nodes\_vector}}
+\index{get\_nodes\_vector@{get\_nodes\_vector}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{get\_nodes\_vector()}{get\_nodes\_vector()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classNode}{Node}} $\ast$ $>$ Graph\+::get\+\_\+nodes\+\_\+vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the vector of nodes in the graph. 
+
+\begin{DoxyReturn}{Returns}
+Vector of pointers to nodes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_a8b0db3dbf1368e972e7c551f6084db62}\label{classGraph_a8b0db3dbf1368e972e7c551f6084db62}} 
+\index{Graph@{Graph}!haversine@{haversine}}
+\index{haversine@{haversine}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{haversine()}{haversine()}}
+{\footnotesize\ttfamily double Graph\+::haversine (\begin{DoxyParamCaption}\item[{double}]{lat1,  }\item[{double}]{lon1,  }\item[{double}]{lat2,  }\item[{double}]{lon2 }\end{DoxyParamCaption})}
+
+
+
+Computes the Haversine distance between two geographical points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lat1} & Latitude of the first point. \\
+\hline
+{\em lon1} & Longitude of the first point. \\
+\hline
+{\em lat2} & Latitude of the second point. \\
+\hline
+{\em lon2} & Longitude of the second point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distance between the two points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_ae7531ecc76524dcf9f6a9a1fe7ba475a}\label{classGraph_ae7531ecc76524dcf9f6a9a1fe7ba475a}} 
+\index{Graph@{Graph}!preorderTraversal@{preorderTraversal}}
+\index{preorderTraversal@{preorderTraversal}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{preorderTraversal()}{preorderTraversal()}}
+{\footnotesize\ttfamily vector$<$ unsigned int $>$ Graph\+::preorder\+Traversal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNode}{Node}} $\ast$}]{node,  }\item[{unordered\+\_\+map$<$ int, bool $>$ \&}]{visited }\end{DoxyParamCaption})}
+
+
+
+Preorder traversal of the graph for MST-\/based TSP approximation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Pointer to the starting node. \\
+\hline
+{\em visited} & Map of visited nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of node IDs in preorder traversal order. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Graph_8h}{Graph.\+h}}\item 
+\mbox{\hyperlink{Graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}

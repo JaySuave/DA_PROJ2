@@ -1,0 +1,173 @@
+\hypertarget{classNode}{}\doxysection{Node Class Reference}
+\label{classNode}\index{Node@{Node}}
+
+
+Represents a node in a graph with an ID, longitude, latitude, and adjacent edges.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNode_aed31deb496a94022c303668452d6a8c3}{Node}} (int id, double node\+\_\+longitude=0, double node\+\_\+latitude=0)
+\begin{DoxyCompactList}\small\item\em Constructor to create a node with a specified ID, longitude, and latitude. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNode_a082d5efb0be81faaeb35dc02b2a4fc76}\label{classNode_a082d5efb0be81faaeb35dc02b2a4fc76}} 
+\mbox{\hyperlink{classNode_a082d5efb0be81faaeb35dc02b2a4fc76}{Node}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classNode}{Node}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classNode_a8648eba251ed257dbff7a462c2b8ad5b}{get\+Node\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ID of the node. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classNode_a0a519b0282bfc88cbb6bd69df7f35af9}{get\+Node\+Longitude}} () const
+\begin{DoxyCompactList}\small\item\em Gets the longitude of the node. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classNode_a3e530efc3cf40720e6aeb2c006c822aa}{get\+Node\+Latitude}} () const
+\begin{DoxyCompactList}\small\item\em Gets the latitude of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{Edge}} $\ast$ \mbox{\hyperlink{classNode_af6ff39efd7c6d1f774ea29a6230746fd}{add\+\_\+edge\+\_\+to\+\_\+node}} (\mbox{\hyperlink{classEdge}{Edge}} $\ast$new\+\_\+edge)
+\begin{DoxyCompactList}\small\item\em Adds an edge to the node\textquotesingle{}s adjacency list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{Edge}} $\ast$ \mbox{\hyperlink{classNode_a8907782a1f26b0c418d695639e276299}{find\+\_\+edge}} (const \mbox{\hyperlink{classNode}{Node}} $\ast$node\+\_\+destination)
+\begin{DoxyCompactList}\small\item\em Finds an edge in the node\textquotesingle{}s adjacency list that leads to a specified destination node. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classEdge}{Edge}} $\ast$ $>$ \mbox{\hyperlink{classNode_a5b8375d12be29fc76ecdd9e38fbb02aa}{get\+\_\+adjacent\+\_\+edges}} () const
+\begin{DoxyCompactList}\small\item\em Gets all adjacent edges of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEdge}{Edge}} $\ast$ \mbox{\hyperlink{classNode_a1cd3914152ff3810ab8c44494661a064}{get\+\_\+edge\+\_\+to\+\_\+node}} (\mbox{\hyperlink{classNode}{Node}} $\ast$node\+\_\+dest)
+\begin{DoxyCompactList}\small\item\em Gets the edge leading to a specified destination node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a node in a graph with an ID, longitude, latitude, and adjacent edges. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNode_aed31deb496a94022c303668452d6a8c3}\label{classNode_aed31deb496a94022c303668452d6a8c3}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{double}]{node\+\_\+longitude = {\ttfamily 0},  }\item[{double}]{node\+\_\+latitude = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor to create a node with a specified ID, longitude, and latitude. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the node. \\
+\hline
+{\em node\+\_\+longitude} & Longitude of the node (default is 0). \\
+\hline
+{\em node\+\_\+latitude} & Latitude of the node (default is 0). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classNode_af6ff39efd7c6d1f774ea29a6230746fd}\label{classNode_af6ff39efd7c6d1f774ea29a6230746fd}} 
+\index{Node@{Node}!add\_edge\_to\_node@{add\_edge\_to\_node}}
+\index{add\_edge\_to\_node@{add\_edge\_to\_node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{add\_edge\_to\_node()}{add\_edge\_to\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{Edge}} $\ast$ Node\+::add\+\_\+edge\+\_\+to\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEdge}{Edge}} $\ast$}]{new\+\_\+edge }\end{DoxyParamCaption})}
+
+
+
+Adds an edge to the node\textquotesingle{}s adjacency list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+edge} & Pointer to the new edge to be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the added edge. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a8907782a1f26b0c418d695639e276299}\label{classNode_a8907782a1f26b0c418d695639e276299}} 
+\index{Node@{Node}!find\_edge@{find\_edge}}
+\index{find\_edge@{find\_edge}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{find\_edge()}{find\_edge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{Edge}}$\ast$ Node\+::find\+\_\+edge (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classNode}{Node}} $\ast$}]{node\+\_\+destination }\end{DoxyParamCaption})}
+
+
+
+Finds an edge in the node\textquotesingle{}s adjacency list that leads to a specified destination node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+\_\+destination} & Pointer to the destination node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the found edge, or nullptr if not found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a5b8375d12be29fc76ecdd9e38fbb02aa}\label{classNode_a5b8375d12be29fc76ecdd9e38fbb02aa}} 
+\index{Node@{Node}!get\_adjacent\_edges@{get\_adjacent\_edges}}
+\index{get\_adjacent\_edges@{get\_adjacent\_edges}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{get\_adjacent\_edges()}{get\_adjacent\_edges()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classEdge}{Edge}} $\ast$ $>$ Node\+::get\+\_\+adjacent\+\_\+edges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets all adjacent edges of the node. 
+
+\begin{DoxyReturn}{Returns}
+Vector of pointers to adjacent edges. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a1cd3914152ff3810ab8c44494661a064}\label{classNode_a1cd3914152ff3810ab8c44494661a064}} 
+\index{Node@{Node}!get\_edge\_to\_node@{get\_edge\_to\_node}}
+\index{get\_edge\_to\_node@{get\_edge\_to\_node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{get\_edge\_to\_node()}{get\_edge\_to\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEdge}{Edge}} $\ast$ Node\+::get\+\_\+edge\+\_\+to\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNode}{Node}} $\ast$}]{node\+\_\+dest }\end{DoxyParamCaption})}
+
+
+
+Gets the edge leading to a specified destination node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+\_\+dest} & Pointer to the destination node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the edge, or nullptr if not found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a8648eba251ed257dbff7a462c2b8ad5b}\label{classNode_a8648eba251ed257dbff7a462c2b8ad5b}} 
+\index{Node@{Node}!getNodeId@{getNodeId}}
+\index{getNodeId@{getNodeId}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getNodeId()}{getNodeId()}}
+{\footnotesize\ttfamily int Node\+::get\+Node\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the ID of the node. 
+
+\begin{DoxyReturn}{Returns}
+ID of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a3e530efc3cf40720e6aeb2c006c822aa}\label{classNode_a3e530efc3cf40720e6aeb2c006c822aa}} 
+\index{Node@{Node}!getNodeLatitude@{getNodeLatitude}}
+\index{getNodeLatitude@{getNodeLatitude}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getNodeLatitude()}{getNodeLatitude()}}
+{\footnotesize\ttfamily double Node\+::get\+Node\+Latitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the latitude of the node. 
+
+\begin{DoxyReturn}{Returns}
+Latitude of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a0a519b0282bfc88cbb6bd69df7f35af9}\label{classNode_a0a519b0282bfc88cbb6bd69df7f35af9}} 
+\index{Node@{Node}!getNodeLongitude@{getNodeLongitude}}
+\index{getNodeLongitude@{getNodeLongitude}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getNodeLongitude()}{getNodeLongitude()}}
+{\footnotesize\ttfamily double Node\+::get\+Node\+Longitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the longitude of the node. 
+
+\begin{DoxyReturn}{Returns}
+Longitude of the node. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Graph_8h}{Graph.\+h}}\item 
+\mbox{\hyperlink{Graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}

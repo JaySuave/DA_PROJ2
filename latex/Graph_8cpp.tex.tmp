@@ -1,0 +1,37 @@
+\hypertarget{Graph_8cpp}{}\doxysection{Graph.\+cpp File Reference}
+\label{Graph_8cpp}\index{Graph.cpp@{Graph.cpp}}
+
+
+Implementation of the \mbox{\hyperlink{classEdge}{Edge}}, \mbox{\hyperlink{classNode}{Node}}, and \mbox{\hyperlink{classGraph}{Graph}} classes and their associated functions.  
+
+
+{\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$stack$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+Include dependency graph for Graph.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{Graph_8cpp_af794d858939364729d6d909b083f716e}\label{Graph_8cpp_af794d858939364729d6d909b083f716e}} 
+void {\bfseries print\+Best\+Path} (vector$<$ unsigned int $>$ tour)
+\item 
+\mbox{\Hypertarget{Graph_8cpp_a386f4a2407dc7273907be947bd947e08}\label{Graph_8cpp_a386f4a2407dc7273907be947bd947e08}} 
+double {\bfseries to\+Radians} (double degree)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{Graph_8cpp_a0877420f3d7b1f47b871d2ccb47168d8}\label{Graph_8cpp_a0877420f3d7b1f47b871d2ccb47168d8}} 
+const double {\bfseries R} = 6371.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \mbox{\hyperlink{classEdge}{Edge}}, \mbox{\hyperlink{classNode}{Node}}, and \mbox{\hyperlink{classGraph}{Graph}} classes and their associated functions. 
+
+This file contains the implementation details for the \mbox{\hyperlink{classEdge}{Edge}}, \mbox{\hyperlink{classNode}{Node}}, and \mbox{\hyperlink{classGraph}{Graph}} classes, including methods for graph construction, TSP algorithms, and utility functions. 

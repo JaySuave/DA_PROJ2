@@ -1,24 +1,31 @@
+/**
+* @file main.cpp
+ */
+
 #include <chrono>
 #include <iostream>
 #include "Handler.h"
 
 using namespace std;
 
-void mainMenu(Handler handler)
-{
+/**
+ * @brief Display the main menu and handle user input for graph operations.
+ *
+ * @param handler The Handler object to manage the graph.
+ */
+void mainMenu(Handler handler) {
     char option;
     bool isToy = handler.isToy();
     bool isEFC = handler.isEFC();
 
     cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
     cout << "Choose action:" << endl;
-    if(handler.isToy() || handler.isEFC()) {
+    if (handler.isToy() || handler.isEFC()) {
         cout << "1 - Backtracking Algorithm." << endl;
         cout << "2 - Triangular Approximation Heuristic." << endl;
         cout << "3 - Nearest Neighbours" << endl;
         cout << "4 - Show loaded Graph." << endl;
-    }
-    else{
+    } else {
         cout << "1 - Triangular Approximation Heuristic." << endl;
         cout << "2 - Nearest Neighbours." << endl;
         cout << "3 - Show loaded Graph." << endl;
@@ -28,38 +35,34 @@ void mainMenu(Handler handler)
     cout << "Enter your choice: ";
     cin >> option;
     auto start = chrono::high_resolution_clock::now();
-    switch(option){
+    switch (option) {
         case '1':
-            if(isToy || isEFC){
+            if (isToy || isEFC) {
                 handler.get_graph().backtracking_caller();
-            }
-            else{
+            } else {
                 handler.get_graph().computeMST();
                 handler.get_graph().approximateTSP();
             }
             break;
         case '2':
-            if(isToy || isEFC){
+            if (isToy || isEFC) {
                 handler.get_graph().computeMST();
                 handler.get_graph().approximateTSP();
-            }
-            else{
+            } else {
                 handler.get_graph().nearest_neighbour();
             }
             break;
         case '3':
-            if(isToy || isEFC){
+            if (isToy || isEFC) {
                 handler.get_graph().nearest_neighbour();
-            }
-            else{
+            } else {
                 handler.print_RealWorld_Graph();
             }
             break;
         case '4':
-            if(isToy || isEFC){
+            if (isToy || isEFC) {
                 handler.print_Graph();
-            }
-            else{
+            } else {
                 cout << "Invalid Choice";
             }
             break;
@@ -70,12 +73,14 @@ void mainMenu(Handler handler)
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
     cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
-
 }
 
-
-void toygraphChoice(Handler handler)
-{
+/**
+ * @brief Display the toy graph selection menu and handle user input.
+ *
+ * @param handler The Handler object to manage the graph.
+ */
+void toygraphChoice(Handler handler) {
     string filePath = "../Toy-Graphs/";
 
     char option;
@@ -89,7 +94,7 @@ void toygraphChoice(Handler handler)
     cout << "Enter your choice: ";
     cin >> option;
 
-    switch(option){
+    switch (option) {
         case '1':
             filePath.append("shipping.csv");
             handler.load_toy_efc_Graph(filePath);
@@ -109,11 +114,14 @@ void toygraphChoice(Handler handler)
             cout << "Invalid Choice. Please Choose Again.\n";
             break;
     }
-
 }
 
-void fullyConnectedChoice(Handler handler)
-{
+/**
+ * @brief Display the fully connected graph selection menu and handle user input.
+ *
+ * @param handler The Handler object to manage the graph.
+ */
+void fullyConnectedChoice(Handler handler) {
     string filePath = "../Extra_Fully_Connected_Graphs/";
     string option;
 
@@ -136,7 +144,7 @@ void fullyConnectedChoice(Handler handler)
     cout << "Enter your choice: ";
     cin >> option;
 
-    switch(stoi(option)){
+    switch (stoi(option)) {
         case 1:
             filePath.append("edges_25.csv");
             handler.load_toy_efc_Graph(filePath);
@@ -201,11 +209,14 @@ void fullyConnectedChoice(Handler handler)
             std::cout << "Invalid option. Please try again." << std::endl;
             break;
     }
-
 }
 
-void realWorldMenu(Handler handler){
-
+/**
+ * @brief Display the real-world graph selection menu and handle user input.
+ *
+ * @param handler The Handler object to manage the graph.
+ */
+void realWorldMenu(Handler handler) {
     char optionData;
     cout << "------ REAL-WORLD GRAPHS ------ \n";
     cout << "Choose DataSet:" << endl;
@@ -218,7 +229,7 @@ void realWorldMenu(Handler handler){
     cout << "Enter your choice: " << endl;
     cin >> optionData;
 
-    switch(optionData){
+    switch (optionData) {
         case '1':
             cout << "Loading graph ..." << endl;
             handler.load_RealWorld("../Real-world-Graphs/graph1/nodes.csv", "../Real-world-Graphs/graph1/edges.csv");
@@ -246,8 +257,12 @@ void realWorldMenu(Handler handler){
 
 bool menuOn = true;
 
+/**
+ * @brief Display the dataset selection menu and handle user input.
+ *
+ * @param handler The Handler object to manage the graph.
+ */
 void datasetChoice(Handler handler) {
-
     char optionData;
     cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
     cout << "Choose DataSet:" << endl;
@@ -260,8 +275,7 @@ void datasetChoice(Handler handler) {
     cout << "Enter your choice: " << endl;
     cin >> optionData;
 
-
-    switch(optionData){
+    switch (optionData) {
         case '1':
             handler.setToy(true);
             toygraphChoice(handler);
@@ -282,11 +296,15 @@ void datasetChoice(Handler handler) {
     }
 }
 
-int main()
-{
+/**
+ * @brief Main function to start the program and display the dataset selection menu.
+ *
+ * @return int Exit status code.
+ */
+int main() {
     Handler handler;
 
-    while(menuOn) {
+    while (menuOn) {
         datasetChoice(handler);
     }
 

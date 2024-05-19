@@ -1,3 +1,12 @@
+/**
+* @file Handler.cpp
+ * @brief Implementation graph operations, including reading from files and printing graphs.
+ *
+ * This file contains the implementation of the Handler class, which provides methods for loading and managing
+ * both fully connected toy graphs and real-world graphs from files.
+ */
+
+
 #include "Handler.h"
 
 #include <fstream>

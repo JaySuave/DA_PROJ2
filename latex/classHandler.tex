@@ -1,0 +1,208 @@
+\hypertarget{classHandler}{}\doxysection{Handler Class Reference}
+\label{classHandler}\index{Handler@{Handler}}
+
+
+Manages the loading, storing, and operations on graphs, including both toy and real-\/world graphs.  
+
+
+
+
+{\ttfamily \#include $<$Handler.\+h$>$}
+
+
+
+Collaboration diagram for Handler\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classHandler_a8082502dad1b1aff3b89c9d457c10270}{read\+\_\+\+Fully\+Connected\+Graph}} (string file)
+\begin{DoxyCompactList}\small\item\em Reads a fully connected graph from a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHandler_a329d14653aa8122019664716dae4e475}\label{classHandler_a329d14653aa8122019664716dae4e475}} 
+void \mbox{\hyperlink{classHandler_a329d14653aa8122019664716dae4e475}{print\+\_\+\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Prints the currently loaded graph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHandler_a976b93ad46b22a9dffa1b40b3a75ec4c}\label{classHandler_a976b93ad46b22a9dffa1b40b3a75ec4c}} 
+void \mbox{\hyperlink{classHandler_a976b93ad46b22a9dffa1b40b3a75ec4c}{print\+\_\+\+Real\+World\+\_\+\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Prints the real-\/world graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHandler_a44d3f644987ee31327e91ed777579307}{load\+\_\+toy\+\_\+efc\+\_\+\+Graph}} (string line)
+\begin{DoxyCompactList}\small\item\em Loads a toy edge-\/first connected (EFC) graph from a line of text. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraph}{Graph}} \mbox{\hyperlink{classHandler_a6685d0beb7be788609f295496b479755}{get\+\_\+graph}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHandler_acd43407151ae0747b93ba27ae04482fd}{load\+\_\+\+Real\+World}} (string node\+File, string edge\+File)
+\begin{DoxyCompactList}\small\item\em Loads a real-\/world graph from node and edge files. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHandler_ae021a390a7aa39bfabe230ba1105ef51}{load\+\_\+\+Real\+World\+\_\+\+Nodes}} (string line)
+\begin{DoxyCompactList}\small\item\em Loads real-\/world nodes from a line of text. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHandler_aa3f335e7165f962271f16cdd6eb0bc75}{load\+\_\+\+Real\+World\+\_\+\+Edges}} (string line)
+\begin{DoxyCompactList}\small\item\em Loads real-\/world edges from a line of text. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHandler_a715af09165066224a9e9f7a3eaae636d}{is\+Toy}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the current graph is a toy graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHandler_a37142f463f32c33c6fda41abe2e8a0a5}{set\+Toy}} (bool toy)
+\begin{DoxyCompactList}\small\item\em Sets the current graph as a toy graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHandler_ace31be49f59d3743393eb6172e49c74c}{is\+EFC}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the current graph is an edge-\/first connected (EFC) graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHandler_a91e8da7c76a25b6c0066f98896ae50a3}{set\+EFC}} (bool efc)
+\begin{DoxyCompactList}\small\item\em Sets the current graph as an edge-\/first connected (EFC) graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHandler_ab618935eefd0b58a8e77bb6702c575c8}\label{classHandler_ab618935eefd0b58a8e77bb6702c575c8}} 
+\mbox{\hyperlink{classGraph}{Graph}} \mbox{\hyperlink{classHandler_ab618935eefd0b58a8e77bb6702c575c8}{graph}}
+\begin{DoxyCompactList}\small\item\em Public graph instance for general use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the loading, storing, and operations on graphs, including both toy and real-\/world graphs. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHandler_a6685d0beb7be788609f295496b479755}\label{classHandler_a6685d0beb7be788609f295496b479755}} 
+\index{Handler@{Handler}!get\_graph@{get\_graph}}
+\index{get\_graph@{get\_graph}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{get\_graph()}{get\_graph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}} Handler\+::get\+\_\+graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current graph. 
+
+\begin{DoxyReturn}{Returns}
+The current graph instance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHandler_ace31be49f59d3743393eb6172e49c74c}\label{classHandler_ace31be49f59d3743393eb6172e49c74c}} 
+\index{Handler@{Handler}!isEFC@{isEFC}}
+\index{isEFC@{isEFC}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{isEFC()}{isEFC()}}
+{\footnotesize\ttfamily bool Handler\+::is\+EFC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the current graph is an edge-\/first connected (EFC) graph. 
+
+\begin{DoxyReturn}{Returns}
+True if the graph is an EFC graph, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHandler_a715af09165066224a9e9f7a3eaae636d}\label{classHandler_a715af09165066224a9e9f7a3eaae636d}} 
+\index{Handler@{Handler}!isToy@{isToy}}
+\index{isToy@{isToy}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{isToy()}{isToy()}}
+{\footnotesize\ttfamily bool Handler\+::is\+Toy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the current graph is a toy graph. 
+
+\begin{DoxyReturn}{Returns}
+True if the graph is a toy graph, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHandler_acd43407151ae0747b93ba27ae04482fd}\label{classHandler_acd43407151ae0747b93ba27ae04482fd}} 
+\index{Handler@{Handler}!load\_RealWorld@{load\_RealWorld}}
+\index{load\_RealWorld@{load\_RealWorld}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{load\_RealWorld()}{load\_RealWorld()}}
+{\footnotesize\ttfamily void Handler\+::load\+\_\+\+Real\+World (\begin{DoxyParamCaption}\item[{string}]{node\+File,  }\item[{string}]{edge\+File }\end{DoxyParamCaption})}
+
+
+
+Loads a real-\/world graph from node and edge files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+File} & Path to the file containing node data. \\
+\hline
+{\em edge\+File} & Path to the file containing edge data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHandler_aa3f335e7165f962271f16cdd6eb0bc75}\label{classHandler_aa3f335e7165f962271f16cdd6eb0bc75}} 
+\index{Handler@{Handler}!load\_RealWorld\_Edges@{load\_RealWorld\_Edges}}
+\index{load\_RealWorld\_Edges@{load\_RealWorld\_Edges}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{load\_RealWorld\_Edges()}{load\_RealWorld\_Edges()}}
+{\footnotesize\ttfamily void Handler\+::load\+\_\+\+Real\+World\+\_\+\+Edges (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Loads real-\/world edges from a line of text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Line of text containing edge data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHandler_ae021a390a7aa39bfabe230ba1105ef51}\label{classHandler_ae021a390a7aa39bfabe230ba1105ef51}} 
+\index{Handler@{Handler}!load\_RealWorld\_Nodes@{load\_RealWorld\_Nodes}}
+\index{load\_RealWorld\_Nodes@{load\_RealWorld\_Nodes}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{load\_RealWorld\_Nodes()}{load\_RealWorld\_Nodes()}}
+{\footnotesize\ttfamily void Handler\+::load\+\_\+\+Real\+World\+\_\+\+Nodes (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Loads real-\/world nodes from a line of text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Line of text containing node data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHandler_a44d3f644987ee31327e91ed777579307}\label{classHandler_a44d3f644987ee31327e91ed777579307}} 
+\index{Handler@{Handler}!load\_toy\_efc\_Graph@{load\_toy\_efc\_Graph}}
+\index{load\_toy\_efc\_Graph@{load\_toy\_efc\_Graph}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{load\_toy\_efc\_Graph()}{load\_toy\_efc\_Graph()}}
+{\footnotesize\ttfamily void Handler\+::load\+\_\+toy\+\_\+efc\+\_\+\+Graph (\begin{DoxyParamCaption}\item[{string}]{line }\end{DoxyParamCaption})}
+
+
+
+Loads a toy edge-\/first connected (EFC) graph from a line of text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Line of text containing the EFC graph data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHandler_a8082502dad1b1aff3b89c9d457c10270}\label{classHandler_a8082502dad1b1aff3b89c9d457c10270}} 
+\index{Handler@{Handler}!read\_FullyConnectedGraph@{read\_FullyConnectedGraph}}
+\index{read\_FullyConnectedGraph@{read\_FullyConnectedGraph}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{read\_FullyConnectedGraph()}{read\_FullyConnectedGraph()}}
+{\footnotesize\ttfamily void Handler\+::read\+\_\+\+Fully\+Connected\+Graph (\begin{DoxyParamCaption}\item[{string}]{file }\end{DoxyParamCaption})}
+
+
+
+Reads a fully connected graph from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Path to the file containing the graph data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHandler_a91e8da7c76a25b6c0066f98896ae50a3}\label{classHandler_a91e8da7c76a25b6c0066f98896ae50a3}} 
+\index{Handler@{Handler}!setEFC@{setEFC}}
+\index{setEFC@{setEFC}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{setEFC()}{setEFC()}}
+{\footnotesize\ttfamily void Handler\+::set\+EFC (\begin{DoxyParamCaption}\item[{bool}]{efc }\end{DoxyParamCaption})}
+
+
+
+Sets the current graph as an edge-\/first connected (EFC) graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Boolean value indicating if the graph is an EFC graph. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHandler_a37142f463f32c33c6fda41abe2e8a0a5}\label{classHandler_a37142f463f32c33c6fda41abe2e8a0a5}} 
+\index{Handler@{Handler}!setToy@{setToy}}
+\index{setToy@{setToy}!Handler@{Handler}}
+\doxysubsubsection{\texorpdfstring{setToy()}{setToy()}}
+{\footnotesize\ttfamily void Handler\+::set\+Toy (\begin{DoxyParamCaption}\item[{bool}]{toy }\end{DoxyParamCaption})}
+
+
+
+Sets the current graph as a toy graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em toy} & Boolean value indicating if the graph is a toy graph. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Handler_8h}{Handler.\+h}}\item 
+\mbox{\hyperlink{Handler_8cpp}{Handler.\+cpp}}\end{DoxyCompactItemize}
