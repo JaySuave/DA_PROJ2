@@ -39,6 +39,10 @@ void mainMenu(Handler handler)
                 }
                 cout << path[0] << endl;
             }
+            else if(isEFC){
+                handler.get_graph().computeMST();
+                handler.get_graph().approximateTSP();
+            }
             else{
                 handler.get_graph().computeMST();
                 handler.get_graph().approximateTSP();

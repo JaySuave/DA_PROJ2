@@ -34,8 +34,8 @@ private:
     Graph graph_;
     Graph real_world_graph_;
     vector<Node> real_world_nodes_;
-    bool isToy_;
-    bool isEFC_;
+    bool isToy_ = false;
+    bool isEFC_ = false;
 };
 
 

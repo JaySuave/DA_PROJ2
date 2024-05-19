@@ -84,6 +84,8 @@ public:
 
     Node* find_node(unsigned int node_id);
 
+    Edge* find_edge_between(Node* node1, Node* node2);
+
     void delete_graph();
 
     //backtracking

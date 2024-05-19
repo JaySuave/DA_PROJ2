@@ -112,6 +112,20 @@ Edge* Node::get_edge_to_node(Node* node_dest) {
     return nullptr;
 }
 
+Edge* Graph::find_edge_between(Node* node1, Node* node2) {
+    if (node1 == nullptr || node2 == nullptr) {
+        return nullptr; // If any of the nodes are null, return nullptr
+    }
+    Edge* edge1_2 = node1->get_edge_to_node(node2);
+    Edge* edge2_1 = node2->get_edge_to_node(node1);
+    if(edge1_2 != nullptr){
+        return edge1_2;
+    }
+    else{
+        return edge2_1;
+    }
+}
+
 
 // ============ Functions ============== //
 
@@ -251,10 +265,15 @@ double Graph::calculateTourDistance(const std::vector<int>& tour) {
         Node* node2 = find_node(tour[i + 1]);
 
         if (node1 != nullptr && node2 != nullptr) {
-            // Check if there's a direct edge
-            double distance = haversine(node1->getNodeLatitude(), node1->getNodeLongitude(),
-                                        node2->getNodeLatitude(), node2->getNodeLongitude());
-            total_distance += distance;
+            Edge* possible_edge = this->find_edge_between(node1,node2);
+            if(possible_edge != nullptr){
+                total_distance+=possible_edge->getEdgeWeight();
+            }
+            else{
+                double distance = haversine(node1->getNodeLatitude(), node1->getNodeLongitude(),
+                                            node2->getNodeLatitude(), node2->getNodeLongitude());
+                total_distance += distance;
+            }
         }
     }
     return total_distance;
@@ -320,6 +339,7 @@ double Graph::triangular_approximation_tsp() {
     // Start at the node with the zero-identifier label
     Node* current_node = find_node(0);
     if (current_node == nullptr) {
+        cout << "Error: Starting node not found." << endl;
         return 0.0; // Error: Starting node not found
     }
 
