@@ -1,3 +1,1 @@
-"C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\DA_PROJ2.dir/objects.a
-C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\ar.exe cr CMakeFiles\DA_PROJ2.dir/objects.a @CMakeFiles\DA_PROJ2.dir\objects1.rsp
-C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\DA_PROJ2.dir/objects.a -Wl,--no-whole-archive -o DA_PROJ2.exe -Wl,--out-implib,libDA_PROJ2.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\DA_PROJ2.dir\linklibs.rsp
+/usr/bin/c++ -g CMakeFiles/DA_PROJ2.dir/main.cpp.o CMakeFiles/DA_PROJ2.dir/Handler.cpp.o CMakeFiles/DA_PROJ2.dir/Graph.cpp.o -o DA_PROJ2 

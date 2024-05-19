@@ -40,13 +40,31 @@ void mainMenu(Handler handler)
                 cout << path[0] << endl;
             }
             else{
-                cout << "triangluar todo";
+                handler.computeMST();
+                handler.approximateTSP();
             }
             break;
         case '2':
-            cout << "todo";
+            if(isToy){
+                handler.triangular_approximation_tsp();
+            }
+            else if(isEFC){
+                handler.computeMST();
+                handler.approximateTSP();
+
+            }
+            else{
+                cout << "TODO Other Heuristics" << endl;
+
+            }
             break;
         case '3':
+            if(isToy){
+                handler.print_Graph();
+            }
+            else{
+                handler.print_RealWorld_Graph();
+            }
             handler.print_Graph();
             break;
         default:
@@ -130,8 +148,10 @@ void fullyConnectedChoice(Handler handler)
 
     switch(stoi(option)){
         case 1:
-            filePath.append("edges_25.csv");
-            handler.load_toy_efc_Graph(filePath);
+            //filePath.append("edges_25.csv");
+            handler.read_RealWorld("../Extra_Fully_Connected_Graphs/nodes.csv", "../Extra_Fully_Connected_Graphs/edges_25.csv");
+
+            //handler.load_toy_efc_Graph(filePath);
             mainMenu(handler);
             break;
         case 2:
@@ -219,8 +239,8 @@ void datasetChoice(Handler handler) {
             break;
         case '2':
             handler.read_RealWorld("../Real-world-Graphs/graph1/nodes.csv", "../Real-world-Graphs/graph1/edges.csv");
-            handler.print_RealWorld_Graph();
-            break;
+            mainMenu(handler);
+            break;break;
         case '3':
             handler.setEFC(true);
             fullyConnectedChoice(handler);

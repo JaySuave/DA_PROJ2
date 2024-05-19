@@ -1,11 +1,12 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DA_PROJ2.dir/Graph.cpp.obj"
-  "CMakeFiles/DA_PROJ2.dir/Handler.cpp.obj"
-  "CMakeFiles/DA_PROJ2.dir/main.cpp.obj"
-  "DA_PROJ2.exe"
-  "DA_PROJ2.exe.manifest"
+  "CMakeFiles/DA_PROJ2.dir/Graph.cpp.o"
+  "CMakeFiles/DA_PROJ2.dir/Graph.cpp.o.d"
+  "CMakeFiles/DA_PROJ2.dir/Handler.cpp.o"
+  "CMakeFiles/DA_PROJ2.dir/Handler.cpp.o.d"
+  "CMakeFiles/DA_PROJ2.dir/main.cpp.o"
+  "CMakeFiles/DA_PROJ2.dir/main.cpp.o.d"
+  "DA_PROJ2"
   "DA_PROJ2.pdb"
-  "libDA_PROJ2.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
