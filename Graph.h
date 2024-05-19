@@ -57,11 +57,6 @@ public:
 
     Edge* get_edge_to_node(Node* node_dest);
 
-    bool isVisited();
-
-    void setVisited(bool visited);
-
-
 private:
     int node_id_;
     double node_dist_;
@@ -90,14 +85,14 @@ public:
 
     //backtracking
     void backtracking(unsigned int n, unsigned int pos, unordered_set<int>& visited, double cost, double& minCost, vector<unsigned int>& curPath, vector<unsigned int>& bestPath);
-    double backtracking_caller(vector<unsigned int>& path);
+    void backtracking_caller();
 
     //triangular approx
-    double triangular_approximation_tsp();
+    void nearest_neighbour();
     double haversine(double lat1, double lon1, double lat2, double lon2);
     void approximateTSP();
-    std::vector<int> preorderTraversal(Node* node, unordered_map<int, bool>& visited);
-    double calculateTourDistance(const std::vector<int>& tour);
+    std::vector<unsigned int> preorderTraversal(Node* node, unordered_map<int, bool>& visited);
+    double calculateTourDistance(const std::vector<unsigned int>& tour);
     void computeMST();
 private:
     vector<Node *> nodes_vector_;

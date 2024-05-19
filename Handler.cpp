@@ -79,90 +79,75 @@ void Handler::load_toy_efc_Graph(std::string filePath) {
     file.close();
 }
 
-void Handler::load_RealWorld_Nodes(std::string line) {
-    std::vector<std::string> loaded;
-    std::stringstream ss(line);
-    std::string col;
-
-    while (std::getline(ss, col, ',')) {
-        loaded.push_back(col);
-    }
-
-    Node input(std::stoi(loaded[0]), std::stod(loaded[1]), std::stod(loaded[2]));
-
-    Node* real_node = new Node(input.getNodeId(), input.getNodeLongitude(), input.getNodeLatitude());
-    this->real_world_graph_.add_node(real_node);
-    this->real_world_nodes_.push_back(input);
-}
-
-void Handler::load_RealWorld_Edges(std::string line) {
-    std::vector<std::string> loaded;
-    std::stringstream ss(line);
-    std::string col;
-
-    while (std::getline(ss, col, ',')) {
-        loaded.push_back(col);
-    }
-
-    Node* origin_node = this->real_world_graph_.find_node(std::stoi(loaded[0]));
-    if (origin_node == nullptr) {
-        origin_node = new Node(std::stoi(loaded[0]));
-        this->real_world_graph_.add_node(origin_node);
-    }
-
-    Node* dest_node = this->real_world_graph_.find_node(std::stoi(loaded[1]));
-    if (dest_node == nullptr) {
-        dest_node = new Node(std::stoi(loaded[1]));
-        this->real_world_graph_.add_node(dest_node);
-    }
-
-
-    Edge* new_edge = new Edge(origin_node, dest_node, std::stod(loaded[2]));
-
-    origin_node->add_edge_to_node(new_edge);
-
-}
-
-void Handler::read_RealWorld(std::string NodeFilePath, std::string EdgeFilePath) {
-    this->real_world_nodes_.clear();
-    this->real_world_graph_.delete_graph();
-
-    // ---------------------- Node Handling ---------------------- //
-    std::fstream realWorldNodesCSV;
-    realWorldNodesCSV.open(NodeFilePath);
-
-    if (realWorldNodesCSV.fail()) {
-        std::cerr << "Error: " << NodeFilePath << std::endl;
+void Handler::load_RealWorld_Nodes(string nodesFile) {
+    ifstream file(nodesFile);
+    if (!file.is_open()) {
+        cerr << "Error opening file: " << nodesFile << endl;
         return;
     }
 
-    std::string line;
-    std::getline(realWorldNodesCSV, line); // Skip the header
-    while (std::getline(realWorldNodesCSV, line)) {
-        if (!line.empty()) {
-            load_RealWorld_Nodes(line);
-        }
+    string line;
+    getline(file, line); // Skip the header line
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string id_str, lon_str, lat_str;
+
+        getline(ss, id_str, ',');
+        getline(ss, lon_str, ',');
+        getline(ss, lat_str, ',');
+
+        int id = stoi(id_str);
+        double longitude = stod(lon_str);
+        double latitude = stod(lat_str);
+
+        Node* new_node = new Node(id, longitude, latitude);
+        this->graph_.add_node(new_node);
     }
 
-    realWorldNodesCSV.close();
+    file.close();
+}
 
-    // ---------------------- Edge Handling ---------------------- //
-    std::fstream realWorldEdgesCSV;
-    realWorldEdgesCSV.open(EdgeFilePath);
-
-    if (realWorldEdgesCSV.fail()) {
-        std::cerr << "Unable to open specified file: " << EdgeFilePath << std::endl;
+void Handler::load_RealWorld_Edges(string edgesFile) {
+    ifstream file(edgesFile);
+    if (!file.is_open()) {
+        cerr << "Error opening file: " << edgesFile << endl;
         return;
     }
 
-    std::getline(realWorldEdgesCSV, line); // Skip the header
-    while (std::getline(realWorldEdgesCSV, line)) {
-        if (!line.empty()) {
-            load_RealWorld_Edges(line);
+    string line;
+    getline(file, line); // Skip the header line
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string origem_str, destino_str, distancia_str;
+
+        getline(ss, origem_str, ',');
+        getline(ss, destino_str, ',');
+        getline(ss, distancia_str, ',');
+
+        int origem = stoi(origem_str);
+        int destino = stoi(destino_str);
+        double distancia = stod(distancia_str);
+
+        Node* origin_node = this->graph_.find_node(origem);
+        Node* dest_node = this->graph_.find_node(destino);
+
+        if (origin_node && dest_node) {
+            // Create and add 2 edges to simulate bidirectional edges
+            Edge* edge1 = new Edge(origin_node, dest_node, distancia);
+            Edge* edge2 = new Edge(dest_node, origin_node, distancia);
+            origin_node->add_edge_to_node(edge1);
+            dest_node->add_edge_to_node(edge2);;
         }
     }
 
-    realWorldEdgesCSV.close();
+    file.close();
+}
+
+void Handler::load_RealWorld(string nodeFile, string edgeFile) {
+    load_RealWorld_Nodes(nodeFile);
+    load_RealWorld_Edges(edgeFile);
 }
 
 void Handler::print_Graph() {

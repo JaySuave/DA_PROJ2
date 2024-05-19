@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Handler.h"
-#include<unistd.h>
 
 using namespace std;
 
@@ -15,7 +14,8 @@ void mainMenu(Handler handler)
     if(handler.isToy() || handler.isEFC()) {
         cout << "1 - Backtracking Algorithm." << endl;
         cout << "2 - Triangular Approximation Heuristic." << endl;
-        cout << "3 - Show loaded Graph." << endl;
+        cout << "3 - Nearest Neighbours" << endl;
+        cout << "4 - Show loaded Graph." << endl;
     }
     else{
         cout << "1 - Triangular Approximation Heuristic." << endl;
@@ -29,19 +29,8 @@ void mainMenu(Handler handler)
 
     switch(option){
         case '1':
-            if(isToy){
-                vector<unsigned int> path;
-                double min_cost = handler.get_graph().backtracking_caller(path);
-                cout << "Minimum Cost: " << min_cost << endl;
-                cout << "BestPath:";
-                for(int i = 0; i < path.size() ; i++){
-                    cout << path[i] << "->";
-                }
-                cout << path[0] << endl;
-            }
-            else if(isEFC){
-                handler.get_graph().computeMST();
-                handler.get_graph().approximateTSP();
+            if(isToy || isEFC){
+                handler.get_graph().backtracking_caller();
             }
             else{
                 handler.get_graph().computeMST();
@@ -49,10 +38,7 @@ void mainMenu(Handler handler)
             }
             break;
         case '2':
-            if(isToy){
-                handler.get_graph().triangular_approximation_tsp();
-            }
-            else if(isEFC){
+            if(isToy || isEFC){
                 handler.get_graph().computeMST();
                 handler.get_graph().approximateTSP();
             }
@@ -61,13 +47,12 @@ void mainMenu(Handler handler)
             }
             break;
         case '3':
-            if(isToy){
-                handler.print_Graph();
+            if(isToy || isEFC){
+                handler.get_graph().nearest_neighbour();
             }
             else{
                 handler.print_RealWorld_Graph();
             }
-            handler.print_Graph();
             break;
         default:
             cout << "Invalid Choice";
@@ -216,6 +201,46 @@ void fullyConnectedChoice(Handler handler)
 
 }
 
+void realWorldMenu(Handler handler){
+
+    char optionData;
+    cout << "------ REAL-WORLD GRAPHS ------ \n";
+    cout << "Choose DataSet:" << endl;
+    cout << "1 - Graph 1." << endl;
+    cout << "2 - Graph 2." << endl;
+    cout << "3 - Graph 3." << endl;
+    cout << "4 - Exit." << endl;
+    cout << "------------------------------------- \n" << endl;
+
+    cout << "Enter your choice: " << endl;
+    cin >> optionData;
+
+    switch(optionData){
+        case '1':
+            cout << "Loading graph ..." << endl;
+            handler.load_RealWorld("../Real-world-Graphs/graph1/nodes.csv", "../Real-world-Graphs/graph1/edges.csv");
+            mainMenu(handler);
+            break;
+        case '2':
+            cout << "Loading graph ..." << endl;
+            handler.load_RealWorld("../Real-world-Graphs/graph2/nodes.csv", "../Real-world-Graphs/graph2/edges.csv");
+            mainMenu(handler);
+            break;
+        case '3':
+            cout << "Loading graph ..." << endl;
+            handler.load_RealWorld("../Real-world-Graphs/graph3/nodes.csv", "../Real-world-Graphs/graph3/edges.csv");
+            mainMenu(handler);
+            break;
+        case '4':
+            cout << "Exiting Real-World Graph Menu..." << endl;
+            break;
+        default:
+            cout << "Invalid Input. Please Try Again." << endl;
+            realWorldMenu(handler);
+            break;
+    }
+}
+
 bool menuOn = true;
 
 void datasetChoice(Handler handler) {
@@ -229,7 +254,7 @@ void datasetChoice(Handler handler) {
     cout << "4 - Exit." << endl;
     cout << "------------------------------------- \n" << endl;
 
-    cout << "Enter your choice: ";
+    cout << "Enter your choice: " << endl;
     cin >> optionData;
 
 
@@ -239,9 +264,8 @@ void datasetChoice(Handler handler) {
             toygraphChoice(handler);
             break;
         case '2':
-            handler.read_RealWorld("../Real-world-Graphs/graph1/nodes.csv", "../Real-world-Graphs/graph1/edges.csv");
-            mainMenu(handler);
-            break;break;
+            realWorldMenu(handler);
+            break;
         case '3':
             handler.setEFC(true);
             fullyConnectedChoice(handler);

@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <queue>
 #include <stack>
+#include <iomanip>
 
 // ============ Edge Functions ============== //
 
@@ -53,14 +54,6 @@ Edge* Node::add_edge_to_node(Edge* edge)
     return edge;
 }
 
-bool Node::isVisited() {
-    return this->visited;
-}
-
-void Node::setVisited(bool visited_) {
-    this->visited = visited_;
-}
-
 vector<Edge *> Node::get_adjacent_edges() const {
     return this->adjacent_edges_;
 }
@@ -87,6 +80,8 @@ bool Graph::add_node(Node *new_node) {
 bool Graph::add_edge(Edge *new_edge) {
     auto origin_node = find_node(new_edge->getEdgeOrigin()->getNodeId());
     auto destination_node = find_node(new_edge->getEdgeDest()->getNodeId());
+
+
 
     if(origin_node == nullptr || destination_node == nullptr){
         perror("Invalid Nodes");
@@ -129,6 +124,21 @@ Edge* Graph::find_edge_between(Node* node1, Node* node2) {
 
 // ============ Functions ============== //
 
+void printBestPath(vector<unsigned int> tour){
+    // Print the "best" path
+    cout << "Best path: ";
+    for (size_t i = 0; i < tour.size(); ++i) {
+        cout << tour[i];
+        if (i != tour.size() - 1) {
+            cout << " -> ";
+        }
+        if(i%10==0 && i!=0){
+            cout << endl;
+            cout << "            "; // to line up better
+        }
+    }
+    cout << endl;
+}
 
 // ========= Backtracking ============= //
 void Graph::backtracking(unsigned int n, unsigned int pos, unordered_set<int>& visited, double cost, double& minCost, vector<unsigned int>& curPath, vector<unsigned int>& bestPath) {
@@ -172,7 +182,7 @@ void Graph::backtracking(unsigned int n, unsigned int pos, unordered_set<int>& v
     visited.erase(pos);
 }
 
-double Graph::backtracking_caller(vector<unsigned int>& path) {
+void Graph::backtracking_caller() {
     unordered_set<int> visited;
     double minCost = numeric_limits<double>::max();
     vector<unsigned int> currentPath;
@@ -181,12 +191,8 @@ double Graph::backtracking_caller(vector<unsigned int>& path) {
     int n = this->nodes_vector_.size();
     backtracking(n,0,visited,0,minCost,currentPath,bestPath);
 
-    //cout << bestPath[0] << " " << bestPath[5] << " " << bestPath[7] << " " << bestPath[13] << "\n";
-    path.clear();
-
-    path=bestPath;
-
-    return minCost;
+    cout << "Minimum Cost: " << minCost << endl;
+    printBestPath(bestPath);
 }
 
 // ========== Triangular Apprx ======== //
@@ -217,7 +223,7 @@ void Graph::approximateTSP() {
 
     // Perform a Preorder DFS traversal on the MST
     std::unordered_map<int, bool> visited;
-    std::vector<int> tour;
+    std::vector<unsigned int> tour;
     Node* start_node = find_node(0);
     if (start_node != nullptr) {
         tour = preorderTraversal(start_node, visited);
@@ -225,14 +231,19 @@ void Graph::approximateTSP() {
 
     // Compute the total distance of this TSP tour
     double tour_distance = calculateTourDistance(tour);
-    std::cout << "Approximate TSP tour distance: " << tour_distance << std::endl;
+
+    cout << fixed << setprecision(2);
+    cout << "Triangle Approximation TSP tour distance: " << tour_distance << endl;
+    printBestPath(tour);
+
+    cout << endl;
 }
 
-std::vector<int> Graph::preorderTraversal(Node* node, std::unordered_map<int, bool>& visited) {
-    std::vector<int> tour;
+vector<unsigned int> Graph::preorderTraversal(Node* node, unordered_map<int, bool>& visited) {
+    vector<unsigned int> tour;
     if (node == nullptr) return tour;
 
-    std::stack<Node*> stack;
+    stack<Node*> stack;
     stack.push(node);
 
     while (!stack.empty()) {
@@ -258,7 +269,7 @@ std::vector<int> Graph::preorderTraversal(Node* node, std::unordered_map<int, bo
     return tour;
 }
 
-double Graph::calculateTourDistance(const std::vector<int>& tour) {
+double Graph::calculateTourDistance(const vector<unsigned int>& tour) {
     double total_distance = 0.0;
     for (size_t i = 0; i < tour.size() - 1; ++i) {
         Node* node1 = find_node(tour[i]);
@@ -330,31 +341,33 @@ void Graph::computeMST() {
     }
 }
 
-double Graph::triangular_approximation_tsp() {
+void Graph::nearest_neighbour() {
     // Ensure graph is not empty
     if (nodes_vector_.empty()) {
-        return 0.0;
+        cout << "Graph is empty." << endl;
     }
 
     // Start at the node with the zero-identifier label
     Node* current_node = find_node(0);
     if (current_node == nullptr) {
         cout << "Error: Starting node not found." << endl;
-        return 0.0; // Error: Starting node not found
     }
 
     // Set to keep track of visited nodes
-    std::unordered_set<Node*> visited;
+    unordered_set<Node*> visited;
     visited.insert(current_node);
+
+    // Vector to keep track of the tour path
+    vector<unsigned int> tour;
+    tour.push_back(current_node->getNodeId());
 
     // Initialize total distance and current node ID
     double total_distance = 0.0;
-    int current_node_id = 0;
 
     // Loop until all nodes are visited
     while (visited.size() < nodes_vector_.size()) {
         // Find the nearest neighbor not yet visited
-        double min_distance = std::numeric_limits<double>::max();
+        double min_distance = numeric_limits<double>::max();
         Node* nearest_neighbor = nullptr;
         for (auto& edge : current_node->get_adjacent_edges()) {
             Node* neighbor = edge->getEdgeDest();
@@ -372,8 +385,9 @@ double Graph::triangular_approximation_tsp() {
             total_distance += min_distance;
             visited.insert(nearest_neighbor);
             current_node = nearest_neighbor;
+            tour.push_back(current_node->getNodeId());
         } else {
-            return 0.0; // Error: No unvisited neighbors found
+            cout << "Error no unvisited neughbours found" << endl;
         }
     }
 
@@ -381,9 +395,12 @@ double Graph::triangular_approximation_tsp() {
     Edge* return_edge = current_node->get_edge_to_node(find_node(0));
     if (return_edge) {
         total_distance += return_edge->getEdgeWeight();
+        tour.push_back(0); // Add the starting node to complete the tour
     }
 
-    std::cout << "Triangular Approximation TSP tour distance: " << total_distance << std::endl;
 
-    return total_distance;
+    cout << fixed << setprecision(2);
+    cout << "Nearest Neighbour TSP tour distance: " << total_distance << endl;
+
+    printBestPath(tour);
 }

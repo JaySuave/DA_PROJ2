@@ -20,7 +20,7 @@ public:
     Graph get_graph();
 
 
-    void read_RealWorld(string nodeFile, string edgeFile);
+    void load_RealWorld(string nodeFile, string edgeFile);
 
     void load_RealWorld_Nodes(string line);
     void load_RealWorld_Edges(string line);
