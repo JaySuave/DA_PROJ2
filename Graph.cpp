@@ -341,6 +341,8 @@ void Graph::computeMST() {
     }
 }
 
+// ======== Nearest Neighbours --------- //
+
 void Graph::nearest_neighbour() {
     // Ensure graph is not empty
     if (nodes_vector_.empty()) {
@@ -387,7 +389,8 @@ void Graph::nearest_neighbour() {
             current_node = nearest_neighbor;
             tour.push_back(current_node->getNodeId());
         } else {
-            cout << "Error no unvisited neughbours found" << endl;
+            cout << "Error no unvisited neighbours found. Result is unachievable." << endl;
+            return;
         }
     }
 

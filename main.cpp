@@ -19,7 +19,7 @@ void mainMenu(Handler handler)
     }
     else{
         cout << "1 - Triangular Approximation Heuristic." << endl;
-        cout << "2 - Other Heuristics." << endl;
+        cout << "2 - Nearest Neighbours." << endl;
         cout << "3 - Show loaded Graph." << endl;
     }
     cout << "------------------------------------- \n" << endl;
@@ -43,7 +43,7 @@ void mainMenu(Handler handler)
                 handler.get_graph().approximateTSP();
             }
             else{
-                cout << "TODO Other Heuristics" << endl;
+                handler.get_graph().nearest_neighbour();
             }
             break;
         case '3':
@@ -52,6 +52,14 @@ void mainMenu(Handler handler)
             }
             else{
                 handler.print_RealWorld_Graph();
+            }
+            break;
+        case '4':
+            if(isToy || isEFC){
+                handler.print_Graph();
+            }
+            else{
+                cout << "Invalid Choice";
             }
             break;
         default:
