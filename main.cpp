@@ -51,13 +51,15 @@ void mainMenu(Handler handler)
             cout << "1 - Backtracking Algorithm." << endl;
             cout << "2 - Triangular Approximation Heuristic." << endl;
             cout << "3 - Nearest Neighbours" << endl;
-            cout << "4 - Show loaded Graph." << endl;
-            cout << "5 - Exit" << endl;
+            cout << "4 - Real-world Nearest Neighbours" << endl;
+            cout << "5 - Show loaded Graph." << endl;
+            cout << "6 - Exit" << endl;
         } else {
             cout << "1 - Triangular Approximation Heuristic." << endl;
             cout << "2 - Nearest Neighbours." << endl;
-            cout << "3 - Show loaded Graph." << endl;
-            cout << "4 - Exit" << endl;
+            cout << "3 - Real-world Nearest Neighbours" << endl;
+            cout << "4 - Show loaded Graph." << endl;
+            cout << "5 - Exit" << endl;
 
         }
         cout << "------------------------------------- \n" << endl;
@@ -70,8 +72,14 @@ void mainMenu(Handler handler)
                 if (isToy || isEFC) {
                     handler.get_graph().backtracking_caller();
                 } else {
+                    auto start = chrono::high_resolution_clock::now();
+
                     handler.get_graph().computeMST();
                     handler.get_graph().approximateTSP();
+
+                    auto end = chrono::high_resolution_clock::now();
+                    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+                    cout << "Time taken by TSP: " << duration.count() << " microseconds" << endl;
                 }
                 break;
             case '2':
@@ -80,7 +88,14 @@ void mainMenu(Handler handler)
                     handler.get_graph().approximateTSP();
                 } else {
                     int initial_node = chooseNumber(handler);
+
+                    auto start = chrono::high_resolution_clock::now();
+
                     handler.get_graph().nearest_neighbour(initial_node);
+
+                    auto end = chrono::high_resolution_clock::now();
+                    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+                    cout << "Time taken by TSP: " << duration.count() << " microseconds" << endl;
                 }
                 break;
             case '3':
@@ -88,19 +103,28 @@ void mainMenu(Handler handler)
                     int initial_node = chooseNumber(handler);
                     handler.get_graph().nearest_neighbour(initial_node);
                 } else {
-                    handler.print_RealWorld_Graph();
+                    int initial_node = chooseNumber(handler);
+                    handler.get_graph().real_world_nearest_neighbours(initial_node);
                 }
                 break;
             case '4':
                 if (isToy || isEFC) {
-                    handler.print_Graph();
+                    int initial_node = chooseNumber(handler);
+                    handler.get_graph().real_world_nearest_neighbours(initial_node);
                 } else {
-                    cout << "Exiting Main Menu ..." << endl;
-                    mainMenuOn = false;
-                    cout << "Invalid Choice";
+                    handler.print_RealWorld_Graph();
                 }
                 break;
             case '5':
+                if(isToy || isEFC){
+                    handler.print_Graph();
+                }
+                else{
+                    cout << "Exiting Main Menu ..." << endl;
+                    mainMenuOn = false;
+                    break;
+                }
+            case '6':
                 if(isToy || isEFC){
                     cout << "Exiting Main Menu ..." << endl;
                     mainMenuOn = false;
@@ -117,11 +141,10 @@ void mainMenu(Handler handler)
 
         /*
         auto start = chrono::high_resolution_clock::now();
-        int min_path = handler.get_graph().TSP_Backtracking(0);
+
         auto end = chrono::high_resolution_clock::now();
         auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-        cout << "Minimum path length: " << min_path << endl;
-        cout << "Time taken by TSP_Backtracking: " << duration.count() << " microseconds" << endl;
+        cout << "Time taken by TSP: " << duration.count() << " microseconds" << endl;
         */
     }
 }

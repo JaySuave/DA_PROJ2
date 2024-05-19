@@ -252,6 +252,10 @@ public:
      */
     void computeMST();
 
+    vector<int> dijkstra(int src, int dest);
+
+    void real_world_nearest_neighbours(unsigned int start_node_id);
+
 private:
     vector<Node *> nodes_vector_; ///< Vector of pointers to nodes in the graph.
 };

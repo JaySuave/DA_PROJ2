@@ -131,6 +131,61 @@ Edge* Graph::find_edge_between(Node* node1, Node* node2) {
     }
 }
 
+vector<int> Graph::dijkstra(int src, int dest) {
+    // Distance map to keep track of the minimum distance to each node
+    unordered_map<int, double> dist;
+    // Previous node map to reconstruct the shortest path
+    unordered_map<int, int> prev;
+
+    // Initialize distances to infinity and source distance to 0
+    for (auto node : nodes_vector_) {
+        dist[node->getNodeId()] = numeric_limits<double>::max();
+    }
+    dist[src] = 0;
+
+    // Priority queue to select the node with the smallest distance
+    priority_queue<pair<double, int>, vector<pair<double, int>>, greater<>> pq;
+    pq.push({0, src});
+
+    // Main Dijkstra loop
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        // If destination is reached, break
+        if (u == dest) break;
+
+        // Process each neighbor of u
+        for (auto edge : find_node(u)->get_adjacent_edges()) {
+            Node* neighbor = edge->getEdgeDest();
+            int v = neighbor->getNodeId();
+            double weight = edge->getEdgeWeight();
+            double alt = dist[u] + weight;
+
+            // If a shorter path to v is found
+            if (alt < dist[v]) {
+                dist[v] = alt;
+                prev[v] = u;
+                pq.push({alt, v});
+            }
+        }
+    }
+
+    // Reconstruct the shortest path from src to dest
+    vector<int> path;
+    for (int at = dest; prev.count(at); at = prev[at]) {
+        path.push_back(at);
+    }
+    path.push_back(src);
+    reverse(path.begin(), path.end());
+
+    // If the path doesn't start from src, it's invalid
+    if (path.front() != src) {
+        path.clear();
+    }
+
+    return path;
+}
 
 // ============ Functions ============== //
 
@@ -422,5 +477,113 @@ void Graph::nearest_neighbour(int initial_node) {
     cout << fixed << setprecision(2);
     cout << "Nearest Neighbour TSP tour distance: " << total_distance << endl;
 
+    printBestPath(tour);
+}
+
+// ======== Real-World graphs tp4.4 =======//
+
+void Graph::real_world_nearest_neighbours(unsigned int start_node_id) {
+    if (nodes_vector_.empty()) {
+        cout << "Error: graph is empty." << endl;
+        return;
+    }
+
+    Node* current_node = find_node(start_node_id);
+    if (!current_node) {
+        cout << "Error: Starting node not found." << endl;
+        return;
+    }
+
+    unordered_set<Node*> visited;
+    visited.insert(current_node);
+
+    double total_distance = 0.0;
+    vector<unsigned int> tour = {start_node_id};
+
+    while (visited.size() < nodes_vector_.size()) {
+        double min_distance = numeric_limits<double>::max();
+        Node* nearest_neighbor = nullptr;
+        vector<int> shortest_path;
+
+        for (auto* edge : current_node->get_adjacent_edges()) {
+            Node* neighbor = edge->getEdgeDest();
+            double weight = edge->getEdgeWeight();
+            if (visited.find(neighbor) == visited.end() && weight < min_distance) {
+                min_distance = weight;
+                nearest_neighbor = neighbor;
+            }
+        }
+
+        if (!nearest_neighbor) {
+            for (auto node : nodes_vector_) {
+                if (visited.find(node) == visited.end()) {
+                    auto path = dijkstra(current_node->getNodeId(), node->getNodeId());
+                    double path_distance = 0.0;
+                    for (size_t i = 0; i < path.size() - 1; ++i) {
+                        Node* u = find_node(path[i]);
+                        Node* v = find_node(path[i + 1]);
+                        for (auto* edge : u->get_adjacent_edges()) {
+                            Node* neighbor = edge->getEdgeDest();
+                            double weight = edge->getEdgeWeight();
+                            if (neighbor == v) {
+                                path_distance += weight;
+                                break;
+                            }
+                        }
+                    }
+                    if (path_distance < min_distance) {
+                        min_distance = path_distance;
+                        nearest_neighbor = node;
+                        shortest_path = path;
+                    }
+                }
+            }
+        }
+
+        if (nearest_neighbor) {
+            //not empty !
+            if (!shortest_path.empty()) {
+                for (size_t i = 1; i < shortest_path.size(); ++i) {
+                    tour.push_back(shortest_path[i]);
+                    visited.insert(find_node(shortest_path[i]));
+                }
+                total_distance += min_distance;
+            } else {
+                total_distance += min_distance;
+                tour.push_back(nearest_neighbor->getNodeId());
+                visited.insert(nearest_neighbor);
+            }
+            current_node = nearest_neighbor;
+        } else {
+            cout << "No valid TSP path exists." << endl;
+            return;
+        }
+    }
+
+    // Compute the path back to the starting node if it's not directly connected
+    auto return_path = dijkstra(current_node->getNodeId(), start_node_id);
+    if (return_path.empty() || return_path.back() != start_node_id) {
+        cout << "No valid TSP path exists." << endl;
+        return;
+    }
+
+    double return_distance = 0.0;
+    for (size_t i = 0; i < return_path.size() - 1; ++i) {
+        Node* u = find_node(return_path[i]);
+        Node* v = find_node(return_path[i + 1]);
+        for (auto* edge : u->get_adjacent_edges()) {
+            Node* neighbor = edge->getEdgeDest();
+            double weight = edge->getEdgeWeight();
+            if (neighbor == v) {
+                return_distance += weight;
+                break;
+            }
+        }
+    }
+
+    total_distance += return_distance;
+    tour.insert(tour.end(), return_path.begin() + 1, return_path.end());
+
+    cout << "Nearest Neighbour TSP tour distance: " << fixed << setprecision(2) << total_distance << endl;
     printBestPath(tour);
 }
