@@ -353,14 +353,14 @@ void Graph::computeMST() {
 
 // ======== Nearest Neighbours --------- //
 
-void Graph::nearest_neighbour() {
+void Graph::nearest_neighbour(int initial_node) {
     // Ensure graph is not empty
     if (nodes_vector_.empty()) {
         cout << "Graph is empty." << endl;
     }
 
     // Start at the node with the zero-identifier label
-    Node* current_node = find_node(0);
+    Node* current_node = find_node(initial_node);
     if (current_node == nullptr) {
         cout << "Error: Starting node not found." << endl;
     }
@@ -375,6 +375,13 @@ void Graph::nearest_neighbour() {
 
     // Initialize total distance and current node ID
     double total_distance = 0.0;
+
+    //check if node is isolated and break if so
+    if(current_node->get_adjacent_edges().empty()){
+        cout << "Error: No adjacent edges for current node (node: " << current_node->getNodeId()
+             << ")." << endl;
+        return;
+    }
 
     // Loop until all nodes are visited
     while (visited.size() < nodes_vector_.size()) {
@@ -405,10 +412,10 @@ void Graph::nearest_neighbour() {
     }
 
     // Connect back to the starting node
-    Edge* return_edge = current_node->get_edge_to_node(find_node(0));
+    Edge* return_edge = current_node->get_edge_to_node(find_node(initial_node));
     if (return_edge) {
         total_distance += return_edge->getEdgeWeight();
-        tour.push_back(0); // Add the starting node to complete the tour
+        tour.push_back(initial_node); // Add the starting node to complete the tour
     }
 
 

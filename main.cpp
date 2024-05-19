@@ -8,71 +8,122 @@
 
 using namespace std;
 
+int chooseNumber(Handler handler) {
+    int starting_point;
+    size_t num_nodes = handler.get_graph().get_nodes_vector().size();
+    cout << "Graph has " << num_nodes << " nodes. Choose Starting Point: ";
+    while (true) {
+        if (cin >> starting_point) {
+            if (starting_point >= 0 && static_cast<size_t>(starting_point) < num_nodes) {
+                cout << endl;
+                break;
+            } else {
+                cout << "Invalid input. Please enter a number between 0 and " << num_nodes - 1 << ": ";
+            }
+        } else {
+            cout << "Invalid input. Please enter a valid integer: ";
+            cin.clear(); // Clear the error flag
+        }
+    }
+
+    return starting_point;
+}
+
 /**
  * @brief Display the main menu and handle user input for graph operations.
  *
  * @param handler The Handler object to manage the graph.
  */
-void mainMenu(Handler handler) {
-    char option;
-    bool isToy = handler.isToy();
-    bool isEFC = handler.isEFC();
 
-    cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
-    cout << "Choose action:" << endl;
-    if (handler.isToy() || handler.isEFC()) {
-        cout << "1 - Backtracking Algorithm." << endl;
-        cout << "2 - Triangular Approximation Heuristic." << endl;
-        cout << "3 - Nearest Neighbours" << endl;
-        cout << "4 - Show loaded Graph." << endl;
-    } else {
-        cout << "1 - Triangular Approximation Heuristic." << endl;
-        cout << "2 - Nearest Neighbours." << endl;
-        cout << "3 - Show loaded Graph." << endl;
-    }
-    cout << "------------------------------------- \n" << endl;
+bool mainMenuOn = true;
 
-    cout << "Enter your choice: ";
-    cin >> option;
-    auto start = chrono::high_resolution_clock::now();
-    switch (option) {
-        case '1':
-            if (isToy || isEFC) {
-                handler.get_graph().backtracking_caller();
-            } else {
-                handler.get_graph().computeMST();
-                handler.get_graph().approximateTSP();
-            }
-            break;
-        case '2':
-            if (isToy || isEFC) {
-                handler.get_graph().computeMST();
-                handler.get_graph().approximateTSP();
-            } else {
-                handler.get_graph().nearest_neighbour();
-            }
-            break;
-        case '3':
-            if (isToy || isEFC) {
-                handler.get_graph().nearest_neighbour();
-            } else {
-                handler.print_RealWorld_Graph();
-            }
-            break;
-        case '4':
-            if (isToy || isEFC) {
-                handler.print_Graph();
-            } else {
+void mainMenu(Handler handler)
+{
+    mainMenuOn = true;
+    while(mainMenuOn) {
+        char option;
+        bool isToy = handler.isToy();
+        bool isEFC = handler.isEFC();
+
+        cout << "------ SHIPPING AND DELIVERIES ------ \n" << endl;
+        cout << "Choose action:" << endl;
+        if (handler.isToy() || handler.isEFC()) {
+            cout << "1 - Backtracking Algorithm." << endl;
+            cout << "2 - Triangular Approximation Heuristic." << endl;
+            cout << "3 - Nearest Neighbours" << endl;
+            cout << "4 - Show loaded Graph." << endl;
+            cout << "5 - Exit" << endl;
+        } else {
+            cout << "1 - Triangular Approximation Heuristic." << endl;
+            cout << "2 - Nearest Neighbours." << endl;
+            cout << "3 - Show loaded Graph." << endl;
+            cout << "4 - Exit" << endl;
+
+        }
+        cout << "------------------------------------- \n" << endl;
+
+        cout << "Enter your choice: ";
+        cin >> option;
+
+        switch (option) {
+            case '1':
+                if (isToy || isEFC) {
+                    handler.get_graph().backtracking_caller();
+                } else {
+                    handler.get_graph().computeMST();
+                    handler.get_graph().approximateTSP();
+                }
+                break;
+            case '2':
+                if (isToy || isEFC) {
+                    handler.get_graph().computeMST();
+                    handler.get_graph().approximateTSP();
+                } else {
+                    int initial_node = chooseNumber(handler);
+                    handler.get_graph().nearest_neighbour(initial_node);
+                }
+                break;
+            case '3':
+                if (isToy || isEFC) {
+                    int initial_node = chooseNumber(handler);
+                    handler.get_graph().nearest_neighbour(initial_node);
+                } else {
+                    handler.print_RealWorld_Graph();
+                }
+                break;
+            case '4':
+                if (isToy || isEFC) {
+                    handler.print_Graph();
+                } else {
+                    cout << "Exiting Main Menu ..." << endl;
+                    mainMenuOn = false;
+                    cout << "Invalid Choice";
+                }
+                break;
+            case '5':
+                if(isToy || isEFC){
+                    cout << "Exiting Main Menu ..." << endl;
+                    mainMenuOn = false;
+                    break;
+                }
+                else{
+                    cout << "Invalid Choice." << endl;
+                    break;
+                }
+            default:
                 cout << "Invalid Choice";
-            }
-            break;
-        default:
-            cout << "Invalid Choice";
-            break;
+                break;
+        }
+
+        /*
+        auto start = chrono::high_resolution_clock::now();
+        int min_path = handler.get_graph().TSP_Backtracking(0);
+        auto end = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+        cout << "Minimum path length: " << min_path << endl;
+        cout << "Time taken by TSP_Backtracking: " << duration.count() << " microseconds" << endl;
+        */
     }
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-    cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
 }
 
 /**

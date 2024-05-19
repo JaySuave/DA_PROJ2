@@ -215,7 +215,7 @@ public:
     /**
      * @brief Nearest neighbour algorithm for TSP.
      */
-    void nearest_neighbour();
+    void nearest_neighbour(int initial_node);
 
     /**
      * @brief Computes the Haversine distance between two geographical points.
