@@ -14,14 +14,6 @@ public:
     void read_FullyConnectedGraph(string file);
     void print_Graph();
     void print_RealWorld_Graph();
-    double haversine(double lat1, double lon1, double lat2, double lon2);
-    void approximateTSP();
-    std::vector<int> preorderTraversal(Node* node, unordered_map<int, bool>& visited);
-    double calculateTourDistance(const std::vector<int>& tour);
-    void computeMST();
-    double triangular_approximation_tsp();
-    double nearest_neighbor_tsp_real_world();
-
 
     void load_toy_efc_Graph(string line);
 

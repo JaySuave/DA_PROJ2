@@ -40,22 +40,20 @@ void mainMenu(Handler handler)
                 cout << path[0] << endl;
             }
             else{
-                handler.computeMST();
-                handler.approximateTSP();
+                handler.get_graph().computeMST();
+                handler.get_graph().approximateTSP();
             }
             break;
         case '2':
             if(isToy){
-                handler.triangular_approximation_tsp();
+                handler.get_graph().triangular_approximation_tsp();
             }
             else if(isEFC){
-                handler.computeMST();
-                handler.approximateTSP();
-
+                handler.get_graph().computeMST();
+                handler.get_graph().approximateTSP();
             }
             else{
                 cout << "TODO Other Heuristics" << endl;
-
             }
             break;
         case '3':
@@ -148,10 +146,8 @@ void fullyConnectedChoice(Handler handler)
 
     switch(stoi(option)){
         case 1:
-            //filePath.append("edges_25.csv");
-            handler.read_RealWorld("../Extra_Fully_Connected_Graphs/nodes.csv", "../Extra_Fully_Connected_Graphs/edges_25.csv");
-
-            //handler.load_toy_efc_Graph(filePath);
+            filePath.append("edges_25.csv");
+            handler.load_toy_efc_Graph(filePath);
             mainMenu(handler);
             break;
         case 2:
@@ -216,7 +212,7 @@ void fullyConnectedChoice(Handler handler)
 
 }
 
-
+bool menuOn = true;
 
 void datasetChoice(Handler handler) {
 
@@ -226,6 +222,7 @@ void datasetChoice(Handler handler) {
     cout << "1 - Toy Graphs." << endl;
     cout << "2 - Real-World Graphs." << endl;
     cout << "3 - Extra Fully Connected Graphs." << endl;
+    cout << "4 - Exit." << endl;
     cout << "------------------------------------- \n" << endl;
 
     cout << "Enter your choice: ";
@@ -245,19 +242,22 @@ void datasetChoice(Handler handler) {
             handler.setEFC(true);
             fullyConnectedChoice(handler);
             break;
+        case '4':
+            menuOn = false;
+            break;
         default:
             cout << "Invalid Choice.";
             break;
     }
 }
 
-
-
 int main()
 {
     Handler handler;
 
-    datasetChoice(handler);
+    while(menuOn) {
+        datasetChoice(handler);
+    }
 
     return 0;
 }

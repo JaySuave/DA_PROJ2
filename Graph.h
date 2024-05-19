@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <cmath>
 #include <unordered_set>
+#include <unordered_map>
 
 // Header Files
 
@@ -54,8 +55,6 @@ public:
 
     vector<Edge *> get_adjacent_edges() const;
 
-    double haversine_formula(const Node* destination_node) const;
-
     Edge* get_edge_to_node(Node* node_dest);
 
     bool isVisited();
@@ -85,11 +84,19 @@ public:
 
     Node* find_node(unsigned int node_id);
 
-    void backtracking(unsigned int n, unsigned int pos, unordered_set<int>& visited, double cost, double& minCost, vector<unsigned int>& curPath, vector<unsigned int>& bestPath);
+    void delete_graph();
 
+    //backtracking
+    void backtracking(unsigned int n, unsigned int pos, unordered_set<int>& visited, double cost, double& minCost, vector<unsigned int>& curPath, vector<unsigned int>& bestPath);
     double backtracking_caller(vector<unsigned int>& path);
 
-    void delete_graph();
+    //triangular approx
+    double triangular_approximation_tsp();
+    double haversine(double lat1, double lon1, double lat2, double lon2);
+    void approximateTSP();
+    std::vector<int> preorderTraversal(Node* node, unordered_map<int, bool>& visited);
+    double calculateTourDistance(const std::vector<int>& tour);
+    void computeMST();
 private:
     vector<Node *> nodes_vector_;
 };
