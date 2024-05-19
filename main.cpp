@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 #include "Handler.h"
 
@@ -26,7 +27,7 @@ void mainMenu(Handler handler)
 
     cout << "Enter your choice: ";
     cin >> option;
-
+    auto start = chrono::high_resolution_clock::now();
     switch(option){
         case '1':
             if(isToy || isEFC){
@@ -66,15 +67,9 @@ void mainMenu(Handler handler)
             cout << "Invalid Choice";
             break;
     }
-
-    /*
-    auto start = chrono::high_resolution_clock::now();
-    int min_path = handler.get_graph().TSP_Backtracking(0);
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-    cout << "Minimum path length: " << min_path << endl;
-    cout << "Time taken by TSP_Backtracking: " << duration.count() << " microseconds" << endl;
-    */
+    cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
 
 }
 
